@@ -1,7 +1,7 @@
 using System.Collections;
 using Practice_8.Utils;
 
-namespace Practice_8;
+namespace Practice_8.Database;
 
 public class Repository<T> : IEnumerable<T> where T : new() 
 {

@@ -4,6 +4,6 @@ public static class Program
 {
     public static void Main()
     {
-        var repo = new Repository<int>("int.dat");
+        
     }
 }
