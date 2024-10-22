@@ -47,8 +47,7 @@ public class CommandContext
         {
             try
             {
-                int operation = ChooseOperation();
-                Process(operation);
+                Process(ChooseOperation());
             }
             catch (Exception e)
             {
