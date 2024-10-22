@@ -1,6 +1,6 @@
 namespace Practice_8.Database.Entities;
 
-public class BaseEntity
+public abstract class BaseEntity
 {
     public int Id { get; set; }
 

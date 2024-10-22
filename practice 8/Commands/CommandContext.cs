@@ -32,14 +32,12 @@ public class CommandContext
 
     private void Process(int operation)
     {
-        foreach (var command in _commands)
+        foreach (var command in _commands.Where(command => operation == command.Number))
         {
-            if (operation == command.Number)
-            {
-                command.Process(_database);
-                return;
-            }
+            command.Process(_database);
+            return;
         }
+
         throw new ArgumentException("Unknown operation. Try again.");
     }
 
