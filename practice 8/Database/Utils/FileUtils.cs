@@ -1,6 +1,6 @@
 #pragma warning disable SYSLIB0011
 using System.Runtime.Serialization.Formatters.Binary;
-namespace Practice_8.Utils;
+namespace Practice_8.Database.Utils;
 
 public class FileUtils<T> where T : new()
 {
@@ -23,11 +23,11 @@ public class FileUtils<T> where T : new()
 
     public T ReadFromFile()
     {
-        var formatter = new BinaryFormatter();
-        using var stream = new FileStream(_filePath, FileMode.Open);
         T data = default(T);
         if (File.Exists(_filePath))
         {
+            var formatter = new BinaryFormatter();
+            using var stream = new FileStream(_filePath, FileMode.Open);
             data = (T)formatter.Deserialize(stream);
         }
 

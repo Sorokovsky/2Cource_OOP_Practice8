@@ -1,14 +1,18 @@
-using System.Collections;
-using Practice_8.Utils;
+using System.Collections.ObjectModel;
+using Practice_8.Database.Utils;
+using Practice_8.Database.Entities;
 
 namespace Practice_8.Database;
 
-public class Repository<T> : IEnumerable<T> where T : new() 
+public class Repository<T> where T : BaseEntity
 {
-    private LinkedList<T> _list = new LinkedList<T>();
-    private FileUtils<LinkedList<T>> _fileUtils;
+    private readonly LinkedList<T> _list;
+    private readonly FileUtils<LinkedList<T>> _fileUtils;
+    private PrimaryKey _primaryKey;
 
     public int Count => _list.Count;
+
+    public ReadOnlyCollection<T> List => _list.ToList().AsReadOnly();
 
     public T this[int index]
     {
@@ -18,15 +22,13 @@ public class Repository<T> : IEnumerable<T> where T : new()
     public Repository(string filePath)
     {
         _fileUtils = new FileUtils<LinkedList<T>>(filePath);
+        _list = _fileUtils.ReadFromFile() ?? new LinkedList<T>();
+        _primaryKey = new PrimaryKey(_list.Count == 0 ? 0 : _list.Max(x => x.Id));
     }
 
-    public IEnumerator<T> GetEnumerator()
+    public void Append(T item)
     {
-        return _list.GetEnumerator();
-    }
-    
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
+        item.Id = _primaryKey.NewId;
+        _list.AddLast(item);
     }
 }
