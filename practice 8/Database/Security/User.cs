@@ -9,6 +9,8 @@ public class User : BaseEntity
 
     public string Password { get; set; }
 
+    public string UserType { get; set; } = Security.UserType.User;
+
     public User(string login, string password)
     {
         Login = login;
@@ -19,6 +21,7 @@ public class User : BaseEntity
     {
         return $"{base.ToString()}" +
                $"Login: {Login}\n" +
-               $"Password: {Password}\n";
+               $"Password: {Password}\n" +
+               $"User type: {UserType}";
     }
 }
