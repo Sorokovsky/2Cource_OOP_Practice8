@@ -1,11 +1,16 @@
 namespace Practice_8.Database.Security;
 
-public static class SecurityCenter
+public class SecurityCenter
 {
-    private static Repository<User> _users = new Repository<User>("users.dat");
+    private Repository<User> _users = new Repository<User>("users.dat");
 
-    public static void Verify(User user)
+    public void Verify(User user)
     {
         
+    }
+
+    public SecurityCenter()
+    {
+        _users.Load();
     }
 }
