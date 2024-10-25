@@ -1,14 +1,13 @@
 using Practice_8.Database;
 using Practice_8.Database.Exceptions;
 using Practice_8.Database.Security;
+using Practice_8.Events;
 
 namespace Practice_8.Commands;
 
 public class CommandContext
 {
     private DBContext _database;
-
-    public User? CurrentUser { get; set; } = null;
     
     private readonly List<Command> _commands = new();
 
@@ -36,8 +35,8 @@ public class CommandContext
 
     private void Process(int operation)
     {
-        if (CurrentUser == null) throw new UserNotLoginnedException();
-        foreach (var command in _commands.Where(command => operation == command.Number && command.NeedUserType.Equals(CurrentUser.UserType)))
+        if (SecurityCenter.CurrentUser == null) throw new UserNotLoginnedException();
+        foreach (var command in _commands.Where(command => operation == command.Number && command.NeedUserType.Equals(SecurityCenter.CurrentUser.UserType)))
         {
             command.Process(_database);
             return;
@@ -53,6 +52,11 @@ public class CommandContext
             try
             {
                 Process(ChooseOperation());
+            }
+            catch (UserNotLoginnedException e)
+            {
+                Console.WriteLine(e.Message);
+                UserEvents.OnNotLogined();
             }
             catch (Exception e)
             {
