@@ -22,4 +22,9 @@ public static class SecurityCenter
     {
         CurrentUser = null;
     }
+
+    public static void UnAuthorized()
+    {
+        Console.WriteLine("You are not authorized to log out. Please authorize.");
+    }
 }

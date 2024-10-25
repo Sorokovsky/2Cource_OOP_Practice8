@@ -55,7 +55,6 @@ public class CommandContext
             }
             catch (UserNotLoginnedException e)
             {
-                Console.WriteLine(e.Message);
                 UserEvents.OnNotLogined();
             }
             catch (Exception e)
