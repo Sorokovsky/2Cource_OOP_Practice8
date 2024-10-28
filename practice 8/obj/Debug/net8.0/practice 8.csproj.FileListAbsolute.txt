@@ -1,15 +1,30 @@
-D:\progects\OOP\2_course\practice 8\practice 8\bin\Debug\net8.0\practice 8.exe
-D:\progects\OOP\2_course\practice 8\practice 8\bin\Debug\net8.0\practice 8.deps.json
-D:\progects\OOP\2_course\practice 8\practice 8\bin\Debug\net8.0\practice 8.runtimeconfig.json
-D:\progects\OOP\2_course\practice 8\practice 8\bin\Debug\net8.0\practice 8.dll
-D:\progects\OOP\2_course\practice 8\practice 8\bin\Debug\net8.0\practice 8.pdb
-D:\progects\OOP\2_course\practice 8\practice 8\obj\Debug\net8.0\practice 8.GeneratedMSBuildEditorConfig.editorconfig
-D:\progects\OOP\2_course\practice 8\practice 8\obj\Debug\net8.0\practice 8.AssemblyInfoInputs.cache
-D:\progects\OOP\2_course\practice 8\practice 8\obj\Debug\net8.0\practice 8.AssemblyInfo.cs
-D:\progects\OOP\2_course\practice 8\practice 8\obj\Debug\net8.0\practice 8.csproj.CoreCompileInputs.cache
-D:\progects\OOP\2_course\practice 8\practice 8\obj\Debug\net8.0\practice 8.sourcelink.json
-D:\progects\OOP\2_course\practice 8\practice 8\obj\Debug\net8.0\practice 8.dll
-D:\progects\OOP\2_course\practice 8\practice 8\obj\Debug\net8.0\refint\practice 8.dll
-D:\progects\OOP\2_course\practice 8\practice 8\obj\Debug\net8.0\practice 8.pdb
-D:\progects\OOP\2_course\practice 8\practice 8\obj\Debug\net8.0\practice 8.genruntimeconfig.cache
-D:\progects\OOP\2_course\practice 8\practice 8\obj\Debug\net8.0\ref\practice 8.dll
+D:/progects/OOP/2_course/practice 8/practice 8/bin/Debug/net8.0/practice 8.exe
+D:/progects/OOP/2_course/practice 8/practice 8/bin/Debug/net8.0/practice 8.deps.json
+D:/progects/OOP/2_course/practice 8/practice 8/bin/Debug/net8.0/practice 8.runtimeconfig.json
+D:/progects/OOP/2_course/practice 8/practice 8/bin/Debug/net8.0/practice 8.dll
+D:/progects/OOP/2_course/practice 8/practice 8/bin/Debug/net8.0/practice 8.pdb
+D:/progects/OOP/2_course/practice 8/practice 8/obj/Debug/net8.0/practice 8.GeneratedMSBuildEditorConfig.editorconfig
+D:/progects/OOP/2_course/practice 8/practice 8/obj/Debug/net8.0/practice 8.AssemblyInfoInputs.cache
+D:/progects/OOP/2_course/practice 8/practice 8/obj/Debug/net8.0/practice 8.AssemblyInfo.cs
+D:/progects/OOP/2_course/practice 8/practice 8/obj/Debug/net8.0/practice 8.csproj.CoreCompileInputs.cache
+D:/progects/OOP/2_course/practice 8/practice 8/obj/Debug/net8.0/practice 8.sourcelink.json
+D:/progects/OOP/2_course/practice 8/practice 8/obj/Debug/net8.0/practice 8.dll
+D:/progects/OOP/2_course/practice 8/practice 8/obj/Debug/net8.0/refint/practice 8.dll
+D:/progects/OOP/2_course/practice 8/practice 8/obj/Debug/net8.0/practice 8.pdb
+D:/progects/OOP/2_course/practice 8/practice 8/obj/Debug/net8.0/practice 8.genruntimeconfig.cache
+D:/progects/OOP/2_course/practice 8/practice 8/obj/Debug/net8.0/ref/practice 8.dll
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/bin/Debug/net8.0/practice 8
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/bin/Debug/net8.0/practice 8.deps.json
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/bin/Debug/net8.0/practice 8.runtimeconfig.json
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/bin/Debug/net8.0/practice 8.dll
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/bin/Debug/net8.0/practice 8.pdb
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/obj/Debug/net8.0/practice 8.GeneratedMSBuildEditorConfig.editorconfig
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/obj/Debug/net8.0/practice 8.AssemblyInfoInputs.cache
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/obj/Debug/net8.0/practice 8.AssemblyInfo.cs
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/obj/Debug/net8.0/practice 8.csproj.CoreCompileInputs.cache
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/obj/Debug/net8.0/practice 8.sourcelink.json
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/obj/Debug/net8.0/practice 8.dll
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/obj/Debug/net8.0/refint/practice 8.dll
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/obj/Debug/net8.0/practice 8.pdb
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/obj/Debug/net8.0/practice 8.genruntimeconfig.cache
+/Users/andrijsorokovskij/Documents/2 cource/practice 8/practice 8/obj/Debug/net8.0/ref/practice 8.dll
