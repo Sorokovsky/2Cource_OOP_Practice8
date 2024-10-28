@@ -9,7 +9,7 @@ public static class SecurityCenter
     
     public static User? CurrentUser { get; private set; }
 
-    public static void login(string login, string password)
+    public static void Login(string login, string password)
     {
         var foundUsers = _users.List.Where(x => x.Login.Equals(login));
         if (!foundUsers.Any()) throw new UserNotFoundException();
@@ -18,7 +18,7 @@ public static class SecurityCenter
         CurrentUser = withCorrectPasswords.First();
     }
 
-    public static void logout()
+    public static void Logout()
     {
         CurrentUser = null;
     }
