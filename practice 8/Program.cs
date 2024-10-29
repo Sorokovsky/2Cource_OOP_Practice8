@@ -9,9 +9,28 @@ public static class Program
 {
     public static void Main()
     {
-        UserEvents.NotLogined += SecurityCenter.UnAuthorized;
-        CommandContext commandContext = new(new DBContext());
-        commandContext.AddCommand(new ExitCommand());
+        PrepareRoles();
+        PrepareEvents();
+        var commandContext = PrepareCommands();
         commandContext.Loop();
+    }
+
+    private static void PrepareEvents()
+    {
+        UserEvents.NotLogined += SecurityCenter.UnAuthorized;
+    }
+
+    private static CommandContext PrepareCommands()
+    {
+        CommandContext context = new(new DBContext());
+        context.AddCommand(new ExitCommand());
+        return context;
+    }
+        
+    private static void PrepareRoles()
+    {
+        SecurityCenter.Hierarchy.Append(new("Quest", 0));
+        SecurityCenter.Hierarchy.Append(new("User", 1));
+        SecurityCenter.Hierarchy.Append(new("Admin", 2));
     }
 }

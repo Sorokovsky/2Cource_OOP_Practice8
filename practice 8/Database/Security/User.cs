@@ -9,12 +9,13 @@ public class User : BaseEntity
 
     public string Password { get; set; }
 
-    public UserType UserType { get; set; }
+    public UserType Role { get; set; }
 
-    public User(string login, string password)
+    public User(string login, string password, UserType role)
     {
         Login = login;
         Password = password;
+        Role = role;
     }
 
     public override string ToString()
@@ -22,6 +23,6 @@ public class User : BaseEntity
         return $"{base.ToString()}" +
                $"Login: {Login}\n" +
                $"Password: {Password}\n" +
-               $"User type: {UserType}";
+               $"Role: {Role}\n";
     }
 }

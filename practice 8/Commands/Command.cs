@@ -7,7 +7,7 @@ public abstract class Command
 {
     private static int _currentNumber = 0;
     
-    public UserType NeedUserType { get; }
+    public abstract UserType NeedUserType { get; }
 
     public int Number { get; set; } = _currentNumber++;
 

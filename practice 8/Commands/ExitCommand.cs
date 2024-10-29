@@ -5,7 +5,7 @@ namespace Practice_8.Commands;
 
 public class ExitCommand : Command
 {
-    public UserType NeedUserType { get; set; }
+    public override UserType NeedUserType { get; } = UserType.Create("Quest");
     public override string Title { get; set; } = "Exit.";
     public override void Process(DBContext database)
     {

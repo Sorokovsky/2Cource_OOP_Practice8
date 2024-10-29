@@ -35,14 +35,16 @@ public class CommandContext
 
     private void Process(int operation)
     {
-        if (SecurityCenter.CurrentUser == null) throw new UserNotLoginnedException();
-        foreach (var command in _commands.Where(command => operation == command.Number && command.NeedUserType.Equals(SecurityCenter.CurrentUser.UserType)))
+        var command = _commands.FirstOrDefault(x => x.Number == operation, null);
+        if(command == null) throw new ArgumentException("Unknown operation. Try again.");
+        if (SecurityCenter.Hierarchy.HasPermition(SecurityCenter.CurrentUser, command.NeedUserType))
         {
             command.Process(_database);
-            return;
         }
-
-        throw new ArgumentException("Unknown operation. Try again.");
+        else
+        {
+            throw new InvalidRoleException(SecurityCenter.CurrentUser.Role, command.NeedUserType);
+        }
     }
 
     public void Loop()

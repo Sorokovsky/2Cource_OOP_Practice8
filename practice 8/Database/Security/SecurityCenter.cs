@@ -1,12 +1,15 @@
 using Practice_8.Database.Exceptions;
+using Practice_8.Events;
 
 namespace Practice_8.Database.Security;
 
 public static class SecurityCenter
 {
     private static Repository<User> _users = new Repository<User>("users.dat");
-    
-    public static User? CurrentUser { get; private set; }
+
+    public static RoleHierarchy Hierarchy = new RoleHierarchy();
+
+    public static User CurrentUser { get; private set; } = new User("Quest", "", new UserType("Quest", 0));
 
     public static void Login(string login, string password)
     {
