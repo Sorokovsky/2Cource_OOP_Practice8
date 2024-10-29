@@ -9,7 +9,7 @@ public static class SecurityCenter
 
     public static RoleHierarchy Hierarchy = new RoleHierarchy();
 
-    public static User CurrentUser { get; private set; } = new User("Quest", "", new UserType("Quest", 0));
+    public static User CurrentUser { get; private set; } = new User("Quest", "", UserType.Create("Quest"));
 
     public static void Login(string login, string password)
     {
