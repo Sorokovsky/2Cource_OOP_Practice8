@@ -37,7 +37,7 @@ public class CommandContext
     {
         var command = _commands.FirstOrDefault(x => x.Number == operation, null);
         if(command == null) throw new ArgumentException("Unknown operation. Try again.");
-        if (SecurityCenter.Hierarchy.HasPermition(SecurityCenter.CurrentUser, command.NeedUserType))
+        if (SecurityCenter.Hierarchy.HasPermission(SecurityCenter.CurrentUser, command.NeedUserType))
         {
             command.Process(_database);
         }
