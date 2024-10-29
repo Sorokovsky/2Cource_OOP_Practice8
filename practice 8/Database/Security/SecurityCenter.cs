@@ -1,5 +1,4 @@
 using Practice_8.Database.Exceptions;
-using Practice_8.Events;
 
 namespace Practice_8.Database.Security;
 

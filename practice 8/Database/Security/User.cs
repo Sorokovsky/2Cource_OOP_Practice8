@@ -9,7 +9,7 @@ public class User : BaseEntity
 
     public string Password { get; set; }
 
-    public string UserType { get; set; } = Security.UserType.User;
+    public UserType UserType { get; set; }
 
     public User(string login, string password)
     {
