@@ -11,12 +11,10 @@ public class RoleHierarchy
         _roles.Add(role);
     }
     
-    public bool HasPermition(User user, UserType needRole)
+    public bool HasPermission(User user, UserType needRole)
     {
-        var isExistsUserRole = _roles.Any(x => FindRolePredicate(user.Role, needRole));
-        var isExistsNeedRole = _roles.Any(x => FindRolePredicate(user.Role, needRole));
-        if (isExistsUserRole == false) throw new RoleNotExistsException(user.Role);
-        if (isExistsNeedRole == false) throw new RoleNotExistsException(needRole);
+        ValidateRole(user.Role);
+        ValidateRole(needRole);
         return user.Role >= needRole;
     }
 
@@ -30,5 +28,11 @@ public class RoleHierarchy
     private bool FindRolePredicate(UserType current, UserType need)
     {
         return current.Index == need.Index && current.Name.Equals(need.Name);
+    }
+
+    private void ValidateRole(UserType role)
+    {
+        var isExistsRole = _roles.Any(x => FindRolePredicate(x, role));
+        if (isExistsRole == false) throw new RoleNotExistsException(role);
     }
 }
