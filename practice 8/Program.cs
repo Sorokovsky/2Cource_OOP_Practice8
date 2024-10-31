@@ -9,7 +9,7 @@ public static class Program
 {
     public static void Main()
     {
-        PrepareRoles();
+        SecurityCenter.PrepareRoles();
         PrepareEvents();
         var commandContext = PrepareCommands();
         commandContext.Loop();
@@ -24,13 +24,7 @@ public static class Program
     {
         CommandContext context = new(new DBContext());
         context.AddCommand(new ExitCommand());
+        context.AddCommand(new RegisterCommand());
         return context;
-    }
-        
-    private static void PrepareRoles()
-    {
-        SecurityCenter.Hierarchy.Append(new("Quest", 0));
-        SecurityCenter.Hierarchy.Append(new("User", 1));
-        SecurityCenter.Hierarchy.Append(new("Admin", 2));
     }
 }

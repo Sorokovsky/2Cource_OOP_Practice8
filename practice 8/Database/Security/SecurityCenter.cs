@@ -9,7 +9,7 @@ public static class SecurityCenter
 
     public static RoleHierarchy Hierarchy = new RoleHierarchy();
 
-    public static User CurrentUser { get; private set; } = new User("Quest", "", UserType.Create("Quest"));
+    public static User CurrentUser { get; private set; }
 
     public static void Login(string login, string password)
     {
@@ -28,5 +28,13 @@ public static class SecurityCenter
     public static void UnAuthorized()
     {
         Console.WriteLine("You are not authorized to log out. Please authorize.");
+    }
+    
+    public static void PrepareRoles()
+    {
+        Hierarchy.Append(new UserType(Roles.Quest, 0));
+        Hierarchy.Append(new UserType(Roles.User, 1));
+        Hierarchy.Append(new UserType(Roles.Admin, 2));
+        CurrentUser = new User("Quest", "", UserType.Create(Roles.Quest));
     }
 }
