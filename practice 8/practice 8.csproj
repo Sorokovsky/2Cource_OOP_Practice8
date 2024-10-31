@@ -6,6 +6,7 @@
         <RootNamespace>practice_8</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AllowUnsafeBinaryFormatter>true</AllowUnsafeBinaryFormatter>
     </PropertyGroup>
 
 </Project>
