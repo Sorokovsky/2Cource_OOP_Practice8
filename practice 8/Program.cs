@@ -9,6 +9,7 @@ public static class Program
 {
     public static void Main()
     {
+        AppContext.SetSwitch("System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.EnableUnsafeDeserialization", true);
         SecurityCenter.PrepareRoles();
         PrepareEvents();
         var commandContext = PrepareCommands();
