@@ -5,6 +5,8 @@ namespace Practice_8.Database.Security;
 public class RoleHierarchy
 {
     private List<UserType> _roles = new();
+    
+    public IReadOnlyList<UserType> Roles => _roles;
 
     public void Append(UserType role)
     {

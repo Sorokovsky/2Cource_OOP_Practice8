@@ -29,6 +29,7 @@ public class Repository<T> where T : BaseEntity
     {
         item.Id = _primaryKey.NewId;
         _list.AddLast(item);
+        Save();
     }
 
     public void Save()
