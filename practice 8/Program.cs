@@ -18,12 +18,12 @@ public static class Program
 
     private static void PrepareEvents()
     {
-        UserEvents.NotLogined += SecurityCenter.UnAuthorized;
+        UserEvents.NotLoginned += SecurityCenter.UnAuthorized;
     }
 
     private static CommandContext PrepareCommands()
     {
-        CommandContext context = new(new DBContext());
+        CommandContext context = new(new DbContext());
         context.AddCommand(new ExitCommand());
         context.AddCommand(new RegisterCommand());
         context.AddCommand(new LoginCommand());

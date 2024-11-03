@@ -7,11 +7,11 @@ namespace Practice_8.Commands;
 
 public class CommandContext
 {
-    private DBContext _database;
+    private DbContext _database;
     
     private readonly List<Command> _commands = new();
 
-    public CommandContext(DBContext database)
+    public CommandContext(DbContext database)
     {
         _database = database;
     }
@@ -35,19 +35,21 @@ public class CommandContext
 
     private void Process(int operation)
     {
-        var command = _commands.FirstOrDefault(x => x.Number == operation, null);
+        var defaultUser = new User("Quest", "quest", UserType.Create(Roles.Quest));
+        var user = SecurityCenter.CurrentUser ?? defaultUser;
+        var command = _commands.FirstOrDefault(x => x?.Number == operation, null);
         if(command == null) throw new ArgumentException("Unknown operation. Try again.");
-        if (SecurityCenter.Hierarchy.HasPermission(SecurityCenter.CurrentUser, command.NeedUserType))
+        if (SecurityCenter.Hierarchy.HasPermission(user, command.NeedUserType))
         {
             command.Process(_database);
         }
         else
         {
-            throw new InvalidRoleException(SecurityCenter.CurrentUser.Role, command.NeedUserType);
+            throw new InvalidRoleException(user.Role, command.NeedUserType);
         }
     }
 
-    public void Loop()
+    public void Loop() 
     {
         while (true)
         {
@@ -55,14 +57,15 @@ public class CommandContext
             {
                 Process(ChooseOperation());
             }
-            catch (UserNotLoginnedException e)
+            catch (UserNotLoginnedException)
             {
-                UserEvents.OnNotLogined();
+                UserEvents.OnNotLoginned();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
         }
+        // ReSharper disable once FunctionNeverReturns
     }
 }

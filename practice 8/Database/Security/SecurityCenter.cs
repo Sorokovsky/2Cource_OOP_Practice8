@@ -5,21 +5,23 @@ namespace Practice_8.Database.Security;
 
 public static class SecurityCenter
 {
-    private static Repository<User> _users = new Repository<User>("users.dat");
+    private static readonly Repository<User> Users = new Repository<User>("users.dat");
 
-    public static RoleHierarchy Hierarchy = new RoleHierarchy();
-
-    public static User CurrentUser { get; private set; }
+    public static readonly RoleHierarchy Hierarchy = new RoleHierarchy();
+    
+    public static User? CurrentUser { get; private set; }
 
     public static void Login(string login, string password)
     {
         try
         {
-            var foundUsers = _users.List.Where(x => x.Login.Equals(login));
-            if (!foundUsers.Any()) throw new UserNotFoundException();
-            var withCorrectPasswords = foundUsers.Where(x => x.Password.Equals(password));
-            if (!withCorrectPasswords.Any()) throw new InvalidPasswordException();
-            CurrentUser = withCorrectPasswords.First();
+            var foundUsers = Users.List.Where(x => x.Login.Equals(login));
+            var users = foundUsers as User[] ?? foundUsers.ToArray();
+            if (users.Length == 0) throw new UserNotFoundException();
+            var withCorrectPasswords = users.Where(x => x.Password.Equals(password));
+            var correctPasswords = withCorrectPasswords as User[] ?? withCorrectPasswords.ToArray();
+            if (correctPasswords.Length == 0) throw new InvalidPasswordException();
+            CurrentUser = correctPasswords.First();
             UserEvents.OnSuccessLoginned();
         }
         catch (UserNotFoundException)

@@ -5,7 +5,7 @@ namespace Practice_8.Commands;
 
 public abstract class Command
 {
-    private static int _currentNumber = 0;
+    private static int _currentNumber;
     
     public abstract UserType NeedUserType { get; }
 
@@ -13,5 +13,5 @@ public abstract class Command
 
     public abstract string Title { get; set; }
 
-    public abstract void Process(DBContext database);
+    public abstract void Process(DbContext database);
 }

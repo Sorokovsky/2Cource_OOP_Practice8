@@ -22,6 +22,8 @@ public class Repository<T> where T : BaseEntity
     public Repository(string filePath)
     {
         _fileUtils = new FileUtils<LinkedList<T>>(filePath);
+        _list = new LinkedList<T>();
+        _primaryKey = new PrimaryKey(0);
         Load();
     }
 
@@ -32,14 +34,14 @@ public class Repository<T> where T : BaseEntity
         Save();
     }
 
-    public void Save()
+    private void Save()
     {
         _fileUtils.WriteToFile(_list);
     }
 
-    public void Load()
+    private void Load()
     {
-        _list = _fileUtils.ReadFromFile() ?? new LinkedList<T>();
+        _list = _fileUtils.ReadFromFile();
         _primaryKey = new PrimaryKey(_list.Count == 0 ? 0 : _list.Max(x => x.Id)); 
     }
 }

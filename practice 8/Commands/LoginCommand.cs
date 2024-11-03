@@ -23,7 +23,7 @@ public class LoginCommand : Command
         UserEvents.SuccessLoginned -= OnSuccessLoginned;
     }
     
-    public override void Process(DBContext database)
+    public override void Process(DbContext database)
     {
         Console.Write("Enter a login: ");
         string login = Console.ReadLine() ?? string.Empty;

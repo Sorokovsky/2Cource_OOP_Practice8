@@ -4,7 +4,7 @@ namespace Practice_8.Database.Utils;
 
 public class FileUtils<T> where T : new()
 {
-    private static string _filePath = String.Empty;
+    private readonly string _filePath;
 
     public FileUtils(string filePath)
     {
@@ -18,12 +18,12 @@ public class FileUtils<T> where T : new()
         var mode = FileMode.Truncate;
         if (File.Exists(_filePath) == false) mode = FileMode.Create;
         using var stream = new FileStream(_filePath, mode);
-        formatter.Serialize(stream, data);
+        formatter.Serialize(stream, data ?? new T());
     }
 
     public T ReadFromFile()
     {
-        T data = default(T);
+        T data = new T();
         if (File.Exists(_filePath))
         {
             var formatter = new BinaryFormatter();

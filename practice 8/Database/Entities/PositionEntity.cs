@@ -5,9 +5,9 @@ public class PositionEntity : BaseEntity
 {
     private int _salary;
     
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; set; }
 
-    public string Requirements { get; set; } = string.Empty;
+    public string Requirements { get; set; }
 
     public int Salary
     {

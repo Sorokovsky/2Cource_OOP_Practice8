@@ -4,17 +4,17 @@ public static class UserEvents
 {
     public delegate void Operation();
 
-    public static event Operation NotLogined;
+    public static event Operation? NotLoginned;
 
-    public static event Operation InvalidPassword;
+    public static event Operation? InvalidPassword;
 
-    public static event Operation InvalidLogin;
+    public static event Operation? InvalidLogin;
 
-    public static event Operation SuccessLoginned;
+    public static event Operation? SuccessLoginned;
 
-    public static void OnNotLogined()
+    public static void OnNotLoginned()
     {
-        NotLogined?.Invoke();
+        NotLoginned?.Invoke();
     }
 
     public static void OnInvalidLogin()

@@ -2,7 +2,7 @@ namespace Practice_8.Database.Utils;
 
 public class PrimaryKey
 {
-    private int _currentId = 0;
+    private int _currentId;
 
     public int NewId => ++_currentId;
 
