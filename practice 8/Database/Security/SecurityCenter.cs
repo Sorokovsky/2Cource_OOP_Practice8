@@ -13,11 +13,23 @@ public static class SecurityCenter
 
     public static void Login(string login, string password)
     {
-        var foundUsers = _users.List.Where(x => x.Login.Equals(login));
-        if (!foundUsers.Any()) throw new UserNotFoundException();
-        var withCorrectPasswords = foundUsers.Where(x => x.Password.Equals(password));
-        if(!withCorrectPasswords.Any()) throw new InvalidPasswordException();
-        CurrentUser = withCorrectPasswords.First();
+        try
+        {
+            var foundUsers = _users.List.Where(x => x.Login.Equals(login));
+            if (!foundUsers.Any()) throw new UserNotFoundException();
+            var withCorrectPasswords = foundUsers.Where(x => x.Password.Equals(password));
+            if (!withCorrectPasswords.Any()) throw new InvalidPasswordException();
+            CurrentUser = withCorrectPasswords.First();
+            UserEvents.OnSuccessLoginned();
+        }
+        catch (UserNotFoundException)
+        {
+            UserEvents.OnInvalidLogin();
+        }
+        catch (InvalidPasswordException)
+        {
+            UserEvents.OnInvalidPassword();
+        }
     }
 
     public static void Logout()

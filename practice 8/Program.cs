@@ -26,6 +26,7 @@ public static class Program
         CommandContext context = new(new DBContext());
         context.AddCommand(new ExitCommand());
         context.AddCommand(new RegisterCommand());
+        context.AddCommand(new LoginCommand());
         return context;
     }
 }
