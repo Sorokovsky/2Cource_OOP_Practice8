@@ -22,7 +22,6 @@ public class User : BaseEntity
     {
         return $"{base.ToString()}" +
                $"Login: {Login}\n" +
-               $"Password: {Password}\n" +
                $"Role: {Role}\n";
     }
 }

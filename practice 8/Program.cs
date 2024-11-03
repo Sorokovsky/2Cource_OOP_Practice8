@@ -27,6 +27,7 @@ public static class Program
         context.AddCommand(new ExitCommand());
         context.AddCommand(new RegisterCommand());
         context.AddCommand(new LoginCommand());
+        context.AddCommand(new ShowAccountCommand());
         return context;
     }
 }
