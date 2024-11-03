@@ -28,6 +28,7 @@ public static class Program
         context.AddCommand(new RegisterCommand());
         context.AddCommand(new LoginCommand());
         context.AddCommand(new ShowAccountCommand());
+        context.AddCommand(new LogoutCommand());
         return context;
     }
 }

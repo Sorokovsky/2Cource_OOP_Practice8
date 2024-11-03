@@ -36,7 +36,7 @@ public static class SecurityCenter
 
     public static void Logout()
     {
-        CurrentUser = null;
+        CurrentUser = new User("Quest", "", UserType.Create(Roles.Quest));
     }
 
     public static void UnAuthorized()
@@ -49,6 +49,6 @@ public static class SecurityCenter
         Hierarchy.Append(new UserType(Roles.Quest, 0));
         Hierarchy.Append(new UserType(Roles.User, 1));
         Hierarchy.Append(new UserType(Roles.Admin, 2));
-        CurrentUser = new User("Quest", "", UserType.Create(Roles.Quest));
+        Logout();
     }
 }

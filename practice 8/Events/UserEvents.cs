@@ -12,6 +12,8 @@ public static class UserEvents
 
     public static event Operation? SuccessLoginned;
 
+    public static event Operation? SuccessLogout;
+
     public static void OnNotLoginned()
     {
         NotLoginned?.Invoke();
@@ -30,5 +32,10 @@ public static class UserEvents
     public static void OnSuccessLoginned()
     {
         SuccessLoginned?.Invoke();
+    }
+
+    public static void OnSuccessLogout()
+    {
+        SuccessLogout?.Invoke();
     }
 }
