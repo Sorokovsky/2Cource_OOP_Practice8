@@ -8,7 +8,7 @@ public class RegisterCommand : Command
 {
     public override UserType NeedUserType { get; } = UserType.Create(Roles.Quest);
     public override string Title { get; set; } = "Register account";
-    public override void Process(DbContext database)
+    public override void Process(DbContext database, CommandContext currentContext)
     {
         Console.Write("Enter a login: "); var username = Console.ReadLine() ?? string.Empty;
         Console.Write("Enter a password: "); var password = Console.ReadLine() ?? string.Empty;

@@ -48,7 +48,7 @@ public class PlayerEntity : BaseEntity
                $"Amplua: {Amplua}\n" +
                $"Number: {Number}\n" +
                $"Hight: {Hight}\n" +
-               $"Weight: {Weight}\n";
+               $"Weight: {Weight}";
     }
 
     public static PlayerEntity Enter()

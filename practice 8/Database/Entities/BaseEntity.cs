@@ -7,6 +7,6 @@ public abstract class BaseEntity
 
     public override string ToString()
     {
-        return $"Id: {Id}\n";
+        return $"Id: {Id}";
     }
 }

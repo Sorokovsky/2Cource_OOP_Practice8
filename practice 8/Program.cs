@@ -1,4 +1,5 @@
 ﻿using Practice_8.Commands;
+using practice_8.Commands.StadiumTypeCommands;
 using practice_8.Commands.UserCommands;
 using Practice_8.Database;
 using Practice_8.Database.Security;
@@ -24,13 +25,17 @@ public static class Program
 
     private static CommandContext PrepareCommands()
     {
-        CommandContext context = new(new DbContext());
+        var database = new DbContext();
+        CommandContext context = new(database, "Main menu", UserType.Create(Roles.Quest));
         context.AddCommand(new ExitCommand());
-        context.AddCommand(new RegisterCommand());
-        context.AddCommand(new LoginCommand());
-        context.AddCommand(new ShowAccountCommand());
-        context.AddCommand(new LogoutCommand());
-        context.AddCommand(new CreateStadiumTypeCommand());
+        var usersContext = new CommandContext(database, "Users menu", UserType.Create(Roles.Quest));
+        usersContext.AddCommand(new ExitCommand());
+        usersContext.AddCommand(new RegisterCommand());
+        usersContext.AddCommand(new LoginCommand());
+        usersContext.AddCommand(new ShowAccountCommand());
+        usersContext.AddCommand(new LogoutCommand());
+        usersContext.AddCommand(new CreateStadiumTypeCommand());
+        context.AddCommand(usersContext);
         return context;
     }
 }

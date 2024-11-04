@@ -24,7 +24,7 @@ public class LoginCommand : Command
         UserEvents.SuccessLoginned -= OnSuccessLoginned;
     }
     
-    public override void Process(DbContext database)
+    public override void Process(DbContext database, CommandContext currentContext)
     {
         Console.Write("Enter a login: ");
         string login = Console.ReadLine() ?? string.Empty;

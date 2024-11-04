@@ -32,8 +32,8 @@ public class CoachEntity : BaseEntity
 
     public override string ToString()
     {
-        return $"{base.ToString()}" +
+        return $"{base.ToString()}\n" +
                $"Phone Number: {PhoneNumber}\n" +
-               $"Age: {Age}\n";
+               $"Age: {Age}";
     }
 }

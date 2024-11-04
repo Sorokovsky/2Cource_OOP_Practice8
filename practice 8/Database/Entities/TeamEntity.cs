@@ -23,6 +23,6 @@ public class TeamEntity : BaseEntity
     {
         return $"{base.ToString()}\n" +
                $"Name: {Name}\n" +
-               $"Coach id: {CoachId}\n";
+               $"Coach id: {CoachId}";
     }
 }

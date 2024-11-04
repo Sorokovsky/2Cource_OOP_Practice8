@@ -20,8 +20,8 @@ public class User : BaseEntity
 
     public override string ToString()
     {
-        return $"{base.ToString()}" +
+        return $"{base.ToString()}\n" +
                $"Login: {Login}\n" +
-               $"Role: {Role}\n";
+               $"Role: {Role}";
     }
 }

@@ -20,7 +20,7 @@ public class LogoutCommand : Command
         UserEvents.SuccessLogout -= OnSuccessLogout;
     }
     
-    public override void Process(DbContext database)
+    public override void Process(DbContext database, CommandContext currentContext)
     {
         SecurityCenter.Logout();
         UserEvents.OnSuccessLogout();

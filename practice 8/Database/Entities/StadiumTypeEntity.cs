@@ -18,7 +18,7 @@ public class StadiumTypeEntity : BaseEntity
     
     public override string ToString()
     {
-        return $"{base.ToString()}" +
-               $"Name: {Name}\n";
+        return $"{base.ToString()}\n" +
+               $"Name: {Name}";
     }
 }

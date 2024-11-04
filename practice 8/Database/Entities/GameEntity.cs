@@ -22,7 +22,7 @@ public class GameEntity : BaseEntity
         return $"{base.ToString()}\n" +
                $"Name: {Name}\n" +
                $"Played at date: {PlayedAtDate}\n" +
-               $"Played at time: {PlayedAtTime}\n";
+               $"Played at time: {PlayedAtTime}";
     }
 
     public static GameEntity Enter()
