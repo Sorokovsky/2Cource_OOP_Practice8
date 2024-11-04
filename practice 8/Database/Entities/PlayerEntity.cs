@@ -1,7 +1,7 @@
 namespace Practice_8.Database.Entities;
 
 [Serializable]
-public class Player : BaseEntity
+public class PlayerEntity : BaseEntity
 {
     private double _hight;
     private int _weight;
@@ -26,7 +26,7 @@ public class Player : BaseEntity
         set => _weight = value < 0 ? 0 : value;
     }
 
-    public Player(double hight, int weight, string surname, string name, string secondName, DateTime birthday, string amplua, int number)
+    public PlayerEntity(double hight, int weight, string surname, string name, string secondName, DateTime birthday, string amplua, int number)
     {
         _hight = hight;
         _weight = weight;
@@ -51,7 +51,7 @@ public class Player : BaseEntity
                $"Weight: {Weight}\n";
     }
 
-    public static Player Enter()
+    public static PlayerEntity Enter()
     {
         Console.Write("Enter a surname: ");
         var surname = Console.ReadLine() ?? string.Empty;
@@ -74,6 +74,6 @@ public class Player : BaseEntity
         var hight = Convert.ToDouble(Console.ReadLine());
         Console.Write("Enter a weight in kg: ");
         var weight = Convert.ToInt32(Console.ReadLine());
-        return new Player(hight, weight, surname, name, secondName, dateTime, amplua, number);
+        return new PlayerEntity(hight, weight, surname, name, secondName, dateTime, amplua, number);
     }
 }
