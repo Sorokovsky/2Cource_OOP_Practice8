@@ -1,7 +1,8 @@
+using Practice_8.Commands;
 using Practice_8.Database;
 using Practice_8.Database.Security;
 
-namespace Practice_8.Commands;
+namespace practice_8.Commands.UserCommands;
 
 public class ShowAccountCommand : Command
 {
