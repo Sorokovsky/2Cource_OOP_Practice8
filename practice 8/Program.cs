@@ -29,6 +29,7 @@ public static class Program
         context.AddCommand(new LoginCommand());
         context.AddCommand(new ShowAccountCommand());
         context.AddCommand(new LogoutCommand());
+        context.AddCommand(new CreateStadiumTypeCommand());
         return context;
     }
 }
