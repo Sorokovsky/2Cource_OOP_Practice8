@@ -34,7 +34,6 @@ public class CoachEntity : BaseEntity
     {
         return $"{base.ToString()}" +
                $"Phone Number: {PhoneNumber}\n" +
-               $"Age: {Age}\n" +
-               $"Position id: {PositionId}\n";
+               $"Age: {Age}\n";
     }
 }

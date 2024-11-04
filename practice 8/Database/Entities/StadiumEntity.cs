@@ -46,7 +46,6 @@ public class StadiumEntity : BaseEntity
                $"Address: {Address}\n" +
                $"Phone number: {PhoneNumber}\n" +
                $"Head master: {HeadMaster}\n" +
-               $"Notes: {Notes}\n" +
-               $"Stadium type id: {StadiumTypeId}\n";
+               $"Notes: {Notes}\n";
     }
 }
