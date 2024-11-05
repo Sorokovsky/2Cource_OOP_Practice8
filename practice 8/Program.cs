@@ -1,4 +1,5 @@
 ﻿using Practice_8.Commands;
+using Practice_8.Commands.StadiumsCommands;
 using practice_8.Commands.StadiumTypeCommands;
 using practice_8.Commands.UserCommands;
 using Practice_8.Database;
@@ -29,7 +30,12 @@ public static class Program
         mainConfigure.Create();
         mainConfigure.WithTitle("Main menu.");
         mainConfigure.WithRole(UserType.Create(Roles.Quest));
-        mainConfigure.WithCommands(new ExitCommand(), PrepareUserContext(), PrepareStadiumTypesContext());
+        mainConfigure.WithCommands(
+            new ExitCommand(), 
+            PrepareUserContext(), 
+            PrepareStadiumTypesContext(),
+            PrepareStadiumsCommands()
+            );
         return mainConfigure.Build();
     }
 
@@ -60,6 +66,16 @@ public static class Program
             new CreateStadiumTypeCommand(),
             new ShowStadiumTypesCommand()
             );
+        return configure.Build();
+    }
+
+    private static CommandContext PrepareStadiumsCommands()
+    {
+        var configure = new ContextConfigure(DbContext.Singleton());
+        configure.Create();
+        configure.WithTitle("Stadiums menu.");
+        configure.WithRole(UserType.Create(Roles.User));
+        configure.WithCommands(new ExitCommand(), new CreateStadiumCommand());
         return configure.Build();
     }
 }
