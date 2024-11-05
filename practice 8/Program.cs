@@ -83,6 +83,6 @@ public static class Program
 
     private static void OnCreated(BaseEntity entity)
     {
-        Console.WriteLine($"{entity.GetType().Name} successfully created.");
+        Console.WriteLine($"{entity.GetType().Name.Replace("Entity", "")} successfully created.");
     }
 }
