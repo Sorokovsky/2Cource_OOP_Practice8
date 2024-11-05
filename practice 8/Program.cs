@@ -3,6 +3,7 @@ using Practice_8.Commands.StadiumsCommands;
 using practice_8.Commands.StadiumTypeCommands;
 using practice_8.Commands.UserCommands;
 using Practice_8.Database;
+using Practice_8.Database.Entities;
 using Practice_8.Database.Security;
 using Practice_8.Events;
 
@@ -22,6 +23,7 @@ public static class Program
     private static void PrepareEvents()
     {
         UserEvents.NotLoginned += SecurityCenter.UnAuthorized;
+        EntityEvents.SuccessCreated += OnSuccessCreated;
     }
 
     private static CommandContext PrepareMainCommands()
@@ -77,5 +79,10 @@ public static class Program
         configure.WithRole(UserType.Create(Roles.User));
         configure.WithCommands(new ExitCommand(), new CreateStadiumCommand());
         return configure.Build();
+    }
+
+    private static void OnSuccessCreated(BaseEntity entity)
+    {
+        Console.WriteLine($"{entity.GetType().Name} successfully created.");
     }
 }

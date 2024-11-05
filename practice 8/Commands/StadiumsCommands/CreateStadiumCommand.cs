@@ -9,16 +9,6 @@ public class CreateStadiumCommand : Command
 {
     public override UserType NeedUserType { get; set; } = UserType.Create(Roles.Admin);
     public override string Title { get; set; } = "Create new stadium";
-
-    public CreateStadiumCommand()
-    {
-        EntityEvents.SuccessCreated += SuccessHandler;
-    }
-
-    ~CreateStadiumCommand()
-    {
-        EntityEvents.SuccessCreated -= SuccessHandler;
-    }
     
     public override void Process(DbContext database, CommandContext currentContext)
     {
@@ -40,10 +30,5 @@ public class CreateStadiumCommand : Command
         newStadium.StadiumTypeId = database.StadiumTypes[index].Id;
         database.Stadiums.Append(newStadium);
         EntityEvents.OnSuccessCreated(newStadium);
-    }
-
-    private static void SuccessHandler(BaseEntity entity)
-    {
-        Console.WriteLine($"{entity.GetType().Name} successfully created.");
     }
 }
