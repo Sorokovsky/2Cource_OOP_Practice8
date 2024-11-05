@@ -7,11 +7,6 @@ namespace Practice_8.Commands;
 
 public class CommandContext : Command
 {
-    public CommandContext()
-    {
-        
-    }
-    
     private DbContext _database;
     private bool _isActive;
     
@@ -20,7 +15,9 @@ public class CommandContext : Command
     public CommandContext(DbContext database, string title, UserType needUserType)
     {
         _database = database;
+        // ReSharper disable once VirtualMemberCallInConstructor
         Title = title;
+        // ReSharper disable once VirtualMemberCallInConstructor
         NeedUserType = needUserType;
         CurrentNumber = 0;
     }
@@ -67,6 +64,9 @@ public class CommandContext : Command
             try
             {
                 Process(ChooseOperation());
+                if (_isActive == false) continue;
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
             }
             catch (UserNotLoginnedException)
             {
