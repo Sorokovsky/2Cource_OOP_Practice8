@@ -57,7 +57,8 @@ public static class Program
         configure.WithRole(UserType.Create(Roles.User));
         configure.WithCommands(
             new ExitCommand(),
-            new CreateStadiumTypeCommand()
+            new CreateStadiumTypeCommand(),
+            new ShowStadiumTypesCommand()
             );
         return configure.Build();
     }
