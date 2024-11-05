@@ -38,17 +38,17 @@ public class Repository<T> where T : BaseEntity
         EntitySuccessEvents.OnCreated(item);
     }
 
-    public void Update(IsNeed isNeed, T newItem)
+    public void Update(IsNeed isNeed, T updatedItem)
     {
         var found = _list.Where(isNeed.Invoke).ToList();
         foreach (var entity in found)
         {
-            newItem.Id = entity.Id;
+            updatedItem.Id = entity.Id;
             _list.Remove(entity);
-            _list.AddLast(newItem);
+            _list.AddLast(updatedItem);
             Sort();
             Save();
-            EntitySuccessEvents.OnUpdated(newItem);
+            EntitySuccessEvents.OnUpdated(updatedItem);
         }
     }
 
