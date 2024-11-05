@@ -5,6 +5,17 @@ namespace Practice_8.Database;
 
 public class DbContext
 {
+    private static DbContext? _instance;
+
+    public static DbContext Singleton()
+    {
+        if (_instance == null)
+        {
+            _instance = new DbContext();
+        }
+        return _instance;
+    }
+    
     public Repository<User> Users { get; } = new Repository<User>("users.dat");
     public Repository<CoachEntity> Coaches { get; } = new Repository<CoachEntity>("coaches.dat");
     public Repository<GameEntity> Games { get; } = new Repository<GameEntity>("games.dat");

@@ -25,7 +25,7 @@ public static class Program
 
     private static CommandContext PrepareMainCommands()
     {
-        var mainConfigure = new ContextConfigure(new DbContext());
+        var mainConfigure = new ContextConfigure(DbContext.Singleton());
         mainConfigure.Create();
         mainConfigure.WithTitle("Main menu.");
         mainConfigure.WithRole(UserType.Create(Roles.Quest));
@@ -35,7 +35,7 @@ public static class Program
 
     private static CommandContext PrepareUserContext()
     {
-        var userConfigure = new ContextConfigure(new DbContext());
+        var userConfigure = new ContextConfigure(DbContext.Singleton());
         userConfigure.Create();
         userConfigure.WithTitle("Users menu.");
         userConfigure.WithRole(UserType.Create(Roles.Quest));
@@ -51,7 +51,7 @@ public static class Program
 
     private static CommandContext PrepareStadiumTypesContext()
     {
-        var configure = new ContextConfigure(new DbContext());
+        var configure = new ContextConfigure(DbContext.Singleton());
         configure.Create();
         configure.WithTitle("Stadium types menu.");
         configure.WithRole(UserType.Create(Roles.User));
