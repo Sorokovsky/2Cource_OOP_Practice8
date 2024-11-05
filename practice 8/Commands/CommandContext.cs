@@ -5,15 +5,19 @@ using Practice_8.Events;
 
 namespace Practice_8.Commands;
 
-public class CommandContext
+public class CommandContext : Command
 {
     private DbContext _database;
+    private bool _isActive;
     
     private readonly List<Command> _commands = new();
 
-    public CommandContext(DbContext database)
+    public CommandContext(DbContext database, string title, UserType needUserType)
     {
         _database = database;
+        Title = title;
+        NeedUserType = needUserType;
+        CurrentNumber = 0;
     }
 
     public void AddCommand(Command command)
@@ -35,13 +39,13 @@ public class CommandContext
 
     private void Process(int operation)
     {
-        var defaultUser = new User("Quest", "quest", UserType.Create(Roles.Quest));
+        var defaultUser = new User(Roles.Quest, Roles.Quest.ToLower(), UserType.Create(Roles.Quest));
         var user = SecurityCenter.CurrentUser ?? defaultUser;
         var command = _commands.FirstOrDefault(x => x?.Number == operation, null);
         if(command == null) throw new ArgumentException("Unknown operation. Try again.");
         if (SecurityCenter.Hierarchy.HasPermission(user, command.NeedUserType))
         {
-            command.Process(_database);
+            command.Process(_database, this);
         }
         else
         {
@@ -49,9 +53,11 @@ public class CommandContext
         }
     }
 
-    public void Loop() 
+    public void Loop()
     {
-        while (true)
+        _isActive = true;
+        Console.WriteLine(Title);
+        while (_isActive)
         {
             try
             {
@@ -66,6 +72,17 @@ public class CommandContext
                 Console.WriteLine(e.Message);
             }
         }
-        // ReSharper disable once FunctionNeverReturns
+    }
+
+    public void Exit()
+    {
+        _isActive = false;
+    }
+
+    public override UserType NeedUserType { get; }
+    public override string Title { get; set; }
+    public override void Process(DbContext database, CommandContext currentContext)
+    {
+        Loop();
     }
 }

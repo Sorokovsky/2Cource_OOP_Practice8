@@ -1,8 +1,9 @@
+using Practice_8.Commands;
 using Practice_8.Database;
 using Practice_8.Database.Security;
 using Practice_8.Events;
 
-namespace Practice_8.Commands;
+namespace practice_8.Commands.UserCommands;
 
 public class LogoutCommand : Command
 {
@@ -19,7 +20,7 @@ public class LogoutCommand : Command
         UserEvents.SuccessLogout -= OnSuccessLogout;
     }
     
-    public override void Process(DbContext database)
+    public override void Process(DbContext database, CommandContext currentContext)
     {
         SecurityCenter.Logout();
         UserEvents.OnSuccessLogout();

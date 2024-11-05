@@ -1,13 +1,14 @@
+using Practice_8.Commands;
 using Practice_8.Database;
 using Practice_8.Database.Security;
 
-namespace Practice_8.Commands;
+namespace practice_8.Commands.UserCommands;
 
 public class RegisterCommand : Command
 {
     public override UserType NeedUserType { get; } = UserType.Create(Roles.Quest);
     public override string Title { get; set; } = "Register account";
-    public override void Process(DbContext database)
+    public override void Process(DbContext database, CommandContext currentContext)
     {
         Console.Write("Enter a login: "); var username = Console.ReadLine() ?? string.Empty;
         Console.Write("Enter a password: "); var password = Console.ReadLine() ?? string.Empty;

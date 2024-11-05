@@ -5,13 +5,13 @@ namespace Practice_8.Commands;
 
 public abstract class Command
 {
-    private static int _currentNumber;
+    protected static int CurrentNumber;
     
     public abstract UserType NeedUserType { get; }
 
-    public int Number { get; set; } = _currentNumber++;
+    public int Number { get; set; } = CurrentNumber++;
 
     public abstract string Title { get; set; }
 
-    public abstract void Process(DbContext database);
+    public abstract void Process(DbContext database, CommandContext currentContext);
 }
