@@ -29,6 +29,6 @@ public class CreateStadiumCommand : Command
         }
         newStadium.StadiumTypeId = database.StadiumTypes[index].Id;
         database.Stadiums.Append(newStadium);
-        EntityEvents.OnSuccessCreated(newStadium);
+        EntitySuccessEvents.OnCreated(newStadium);
     }
 }

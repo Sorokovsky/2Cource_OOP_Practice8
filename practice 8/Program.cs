@@ -23,7 +23,7 @@ public static class Program
     private static void PrepareEvents()
     {
         UserEvents.NotLoginned += SecurityCenter.UnAuthorized;
-        EntityEvents.SuccessCreated += OnSuccessCreated;
+        EntitySuccessEvents.Created += OnCreated;
     }
 
     private static CommandContext PrepareMainCommands()
@@ -81,7 +81,7 @@ public static class Program
         return configure.Build();
     }
 
-    private static void OnSuccessCreated(BaseEntity entity)
+    private static void OnCreated(BaseEntity entity)
     {
         Console.WriteLine($"{entity.GetType().Name} successfully created.");
     }
