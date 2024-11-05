@@ -28,6 +28,7 @@ public static class Program
         UserEvents.InvalidPassword += OnInvalidPassword;
         UserEvents.SuccessLoginned += OnSuccessLoginned;
         UserEvents.SuccessLogout += OnSuccessLogout;
+        EntitySuccessEvents.Updated += OnUpdated;
     }
 
     private static CommandContext PrepareMainCommands()
@@ -70,6 +71,7 @@ public static class Program
         configure.WithCommands(
             new ExitCommand(),
             new CreateStadiumTypeCommand(),
+            new UpdateStadiumTypeCommand(),
             new ShowStadiumTypesCommand()
             );
         return configure.Build();
@@ -110,8 +112,13 @@ public static class Program
         Console.WriteLine("Success logout.");
     }
     
-    public static void UnAuthorized()
+    private static void UnAuthorized()
     {
         Console.WriteLine("You are not authorized to log out. Please authorize.");
+    }
+
+    private static void OnUpdated(BaseEntity entity)
+    {
+        Console.WriteLine($"{entity.GetType().Name} was updated where id == {entity.Id}");
     }
 }

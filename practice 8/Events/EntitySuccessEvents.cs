@@ -8,8 +8,15 @@ public static class EntitySuccessEvents
 
     public static event Operation? Created;
 
+    public static event Operation? Updated;
+
     public static void OnCreated(BaseEntity entity)
     {
         Created?.Invoke(entity);
+    }
+
+    public static void OnUpdated(BaseEntity entity)
+    {
+        Updated?.Invoke(entity);
     }
 }
