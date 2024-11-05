@@ -2,6 +2,7 @@ using Practice_8.Commands;
 using Practice_8.Database;
 using Practice_8.Database.Entities;
 using Practice_8.Database.Security;
+using Practice_8.Events;
 
 namespace practice_8.Commands.StadiumTypeCommands;
 
@@ -13,5 +14,6 @@ public class CreateStadiumTypeCommand : Command
     {
         var stadiumType = StadiumTypeEntity.Enter();
         database.StadiumTypes.Append(stadiumType);
+        EntitySuccessEvents.OnCreated(stadiumType);
     }
 }
