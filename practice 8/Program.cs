@@ -29,14 +29,16 @@ public static class Program
         CommandContext context = new(database, "Main menu.", UserType.Create(Roles.Quest));
         context.AddCommand(new ExitCommand());
         var usersContext = new CommandContext(database, "Users menu.", UserType.Create(Roles.Quest));
+        usersContext.Number = 1;
         usersContext.AddCommand(new ExitCommand());
         usersContext.AddCommand(new RegisterCommand());
         usersContext.AddCommand(new LoginCommand());
         usersContext.AddCommand(new ShowAccountCommand());
         usersContext.AddCommand(new LogoutCommand());
         var stadiumTypesContext = new CommandContext(database, "Stadium types menu.", UserType.Create(Roles.User));
+        stadiumTypesContext.Number = 2;
         stadiumTypesContext.AddCommand(new ExitCommand());
-        usersContext.AddCommand(new CreateStadiumTypeCommand());
+        stadiumTypesContext.AddCommand(new CreateStadiumTypeCommand());
         context.AddCommand(usersContext);
         context.AddCommand(stadiumTypesContext);
         return context;
