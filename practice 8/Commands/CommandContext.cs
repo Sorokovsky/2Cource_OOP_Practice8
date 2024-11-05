@@ -7,6 +7,11 @@ namespace Practice_8.Commands;
 
 public class CommandContext : Command
 {
+    public CommandContext()
+    {
+        
+    }
+    
     private DbContext _database;
     private bool _isActive;
     
