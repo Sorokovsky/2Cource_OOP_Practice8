@@ -84,7 +84,7 @@ public class CommandContext : Command
         _isActive = false;
     }
 
-    public override UserType NeedUserType { get; }
+    public override UserType NeedUserType { get; set; }
     public override string Title { get; set; }
     public override void Process(DbContext database, CommandContext currentContext)
     {

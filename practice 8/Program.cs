@@ -14,7 +14,7 @@ public static class Program
         AppContext.SetSwitch("System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.EnableUnsafeDeserialization", true);
         SecurityCenter.PrepareRoles();
         PrepareEvents();
-        var commandContext = PrepareCommands();
+        var commandContext = PrepareMainCommands();
         commandContext.Loop();
     }
 
@@ -23,24 +23,42 @@ public static class Program
         UserEvents.NotLoginned += SecurityCenter.UnAuthorized;
     }
 
-    private static CommandContext PrepareCommands()
+    private static CommandContext PrepareMainCommands()
     {
-        var database = new DbContext();
-        CommandContext context = new(database, "Main menu.", UserType.Create(Roles.Quest));
-        context.AddCommand(new ExitCommand());
-        var usersContext = new CommandContext(database, "Users menu.", UserType.Create(Roles.Quest));
-        usersContext.Number = 1;
-        usersContext.AddCommand(new ExitCommand());
-        usersContext.AddCommand(new RegisterCommand());
-        usersContext.AddCommand(new LoginCommand());
-        usersContext.AddCommand(new ShowAccountCommand());
-        usersContext.AddCommand(new LogoutCommand());
-        var stadiumTypesContext = new CommandContext(database, "Stadium types menu.", UserType.Create(Roles.User));
-        stadiumTypesContext.Number = 2;
-        stadiumTypesContext.AddCommand(new ExitCommand());
-        stadiumTypesContext.AddCommand(new CreateStadiumTypeCommand());
-        context.AddCommand(usersContext);
-        context.AddCommand(stadiumTypesContext);
-        return context;
+        var mainConfigure = new ContextConfigure(new DbContext());
+        mainConfigure.Create();
+        mainConfigure.WithTitle("Main menu.");
+        mainConfigure.WithRole(UserType.Create(Roles.Quest));
+        mainConfigure.WithCommands(new ExitCommand(), PrepareUserContext(), PrepareStadiumTypesContext());
+        return mainConfigure.Build();
+    }
+
+    private static CommandContext PrepareUserContext()
+    {
+        var userConfigure = new ContextConfigure(new DbContext());
+        userConfigure.Create();
+        userConfigure.WithTitle("Users menu.");
+        userConfigure.WithRole(UserType.Create(Roles.Quest));
+        userConfigure.WithCommands(
+            new ExitCommand(), 
+            new RegisterCommand(), 
+            new LoginCommand(), 
+            new ShowAccountCommand(),
+            new LogoutCommand()
+            );
+        return userConfigure.Build();
+    }
+
+    private static CommandContext PrepareStadiumTypesContext()
+    {
+        var configure = new ContextConfigure(new DbContext());
+        configure.Create();
+        configure.WithTitle("Stadium types menu.");
+        configure.WithRole(UserType.Create(Roles.User));
+        configure.WithCommands(
+            new ExitCommand(),
+            new CreateStadiumTypeCommand()
+            );
+        return configure.Build();
     }
 }

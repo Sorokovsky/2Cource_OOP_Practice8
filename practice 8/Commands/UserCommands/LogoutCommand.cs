@@ -7,7 +7,7 @@ namespace practice_8.Commands.UserCommands;
 
 public class LogoutCommand : Command
 {
-    public override UserType NeedUserType { get; } = UserType.Create(Roles.User);
+    public override UserType NeedUserType { get; set; } = UserType.Create(Roles.User);
     public override string Title { get; set; } = "Logout.";
 
     public LogoutCommand()

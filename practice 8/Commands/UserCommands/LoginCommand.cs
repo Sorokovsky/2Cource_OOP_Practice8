@@ -7,7 +7,7 @@ namespace practice_8.Commands.UserCommands;
 
 public class LoginCommand : Command
 {
-    public override UserType NeedUserType { get; } = UserType.Create(Roles.Quest);
+    public override UserType NeedUserType { get; set; } = UserType.Create(Roles.Quest);
     public override string Title { get; set; } = "Login.";
 
     public LoginCommand()
