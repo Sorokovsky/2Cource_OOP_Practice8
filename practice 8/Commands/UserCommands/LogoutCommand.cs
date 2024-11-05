@@ -9,25 +9,10 @@ public class LogoutCommand : Command
 {
     public override UserType NeedUserType { get; set; } = UserType.Create(Roles.User);
     public override string Title { get; set; } = "Logout.";
-
-    public LogoutCommand()
-    {
-        UserEvents.SuccessLogout += OnSuccessLogout;
-    }
-    
-    ~LogoutCommand()
-    {
-        UserEvents.SuccessLogout -= OnSuccessLogout;
-    }
     
     public override void Process(DbContext database, CommandContext currentContext)
     {
         SecurityCenter.Logout();
         UserEvents.OnSuccessLogout();
-    }
-
-    private void OnSuccessLogout()
-    {
-        Console.WriteLine("Success logout.");
     }
 }

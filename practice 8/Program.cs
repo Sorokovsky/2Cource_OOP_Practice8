@@ -22,8 +22,12 @@ public static class Program
 
     private static void PrepareEvents()
     {
-        UserEvents.NotLoginned += SecurityCenter.UnAuthorized;
+        UserEvents.NotLoginned += UnAuthorized;
         EntitySuccessEvents.Created += OnCreated;
+        UserEvents.InvalidLogin += OnInvalidLogin;
+        UserEvents.InvalidPassword += OnInvalidPassword;
+        UserEvents.SuccessLoginned += OnSuccessLoginned;
+        UserEvents.SuccessLogout += OnSuccessLogout;
     }
 
     private static CommandContext PrepareMainCommands()
@@ -84,5 +88,30 @@ public static class Program
     private static void OnCreated(BaseEntity entity)
     {
         Console.WriteLine($"{entity.GetType().Name.Replace("Entity", "")} successfully created.");
+    }
+    
+    private static void OnInvalidLogin()
+    {
+        Console.WriteLine("Invalid login. Try again.");
+    }
+
+    private static void OnInvalidPassword()
+    {
+        Console.WriteLine("Invalid password. Try again.");
+    }
+
+    private static void OnSuccessLoginned()
+    {
+        Console.WriteLine("Success loginned.");
+    }
+    
+    private static void OnSuccessLogout()
+    {
+        Console.WriteLine("Success logout.");
+    }
+    
+    public static void UnAuthorized()
+    {
+        Console.WriteLine("You are not authorized to log out. Please authorize.");
     }
 }

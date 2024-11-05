@@ -5,7 +5,7 @@ namespace Practice_8.Database.Security;
 
 public static class SecurityCenter
 {
-    private static readonly Repository<User> Users = new Repository<User>("users.dat");
+    private static readonly Repository<User> Users = DbContext.Singleton().Users;
 
     public static readonly RoleHierarchy Hierarchy = new RoleHierarchy();
     
@@ -36,12 +36,7 @@ public static class SecurityCenter
 
     public static void Logout()
     {
-        CurrentUser = new User("Quest", "", UserType.Create(Roles.Quest));
-    }
-
-    public static void UnAuthorized()
-    {
-        Console.WriteLine("You are not authorized to log out. Please authorize.");
+        CurrentUser = new User(Roles.Quest, "", UserType.Create(Roles.Quest));
     }
     
     public static void PrepareRoles()
