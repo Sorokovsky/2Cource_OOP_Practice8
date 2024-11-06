@@ -1,7 +1,7 @@
 namespace Practice_8.Database.Security;
 
 [Serializable]
-public class UserType
+public class UserType : IComparable
 {
     public string Name { get; init; }
     
@@ -40,6 +40,13 @@ public class UserType
 
     public override string ToString()
     {
-        return $"{Name}\n";
+        return $"{Name}";
+    }
+
+    public int CompareTo(object? second)
+    {
+        if (second == null) return 1;
+        if (second is UserType secondRole) return Index.CompareTo(secondRole.Index);
+        throw new ArgumentException("Object is not UserType");
     }
 }

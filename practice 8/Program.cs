@@ -36,7 +36,6 @@ public static class Program
         var mainConfigure = new ContextConfigure(DbContext.Singleton());
         mainConfigure.Create();
         mainConfigure.WithTitle("Main menu.");
-        mainConfigure.WithRole(UserType.Create(Roles.Quest));
         mainConfigure.WithCommands(
             new ExitCommand(), 
             PrepareUserContext(), 
@@ -51,7 +50,6 @@ public static class Program
         var userConfigure = new ContextConfigure(DbContext.Singleton());
         userConfigure.Create();
         userConfigure.WithTitle("Users menu.");
-        userConfigure.WithRole(UserType.Create(Roles.Quest));
         userConfigure.WithCommands(
             new ExitCommand(), 
             new RegisterCommand(), 
@@ -67,7 +65,6 @@ public static class Program
         var configure = new ContextConfigure(DbContext.Singleton());
         configure.Create();
         configure.WithTitle("Stadium types menu.");
-        configure.WithRole(UserType.Create(Roles.User));
         configure.WithCommands(
             new ExitCommand(),
             new CreateStadiumTypeCommand(),
@@ -82,7 +79,6 @@ public static class Program
         var configure = new ContextConfigure(DbContext.Singleton());
         configure.Create();
         configure.WithTitle("Stadiums menu.");
-        configure.WithRole(UserType.Create(Roles.User));
         configure.WithCommands(new ExitCommand(), new CreateStadiumCommand());
         return configure.Build();
     }

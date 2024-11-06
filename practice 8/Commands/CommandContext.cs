@@ -12,19 +12,28 @@ public class CommandContext : Command
     
     private readonly List<Command> _commands = new();
 
-    public CommandContext(DbContext database, string title, UserType needUserType)
+    public CommandContext(DbContext database, string title)
     {
         _database = database;
         // ReSharper disable once VirtualMemberCallInConstructor
         Title = title;
-        // ReSharper disable once VirtualMemberCallInConstructor
-        NeedUserType = needUserType;
         CurrentNumber = 0;
+        // ReSharper disable once VirtualMemberCallInConstructor
+        SetMinimalRole();
+    }
+
+    private void SetMinimalRole()
+    {
+        NeedUserType = _commands.Where(x => x is ExitCommand == false)
+            .Min(x => x.NeedUserType) 
+                       ?? 
+                       (SecurityCenter.Hierarchy.Roles.Min() ?? UserType.Create(Roles.Quest));
     }
 
     public void AddCommand(Command command)
     {
         _commands.Add(command);
+        SetMinimalRole();
     }
 
     private int ChooseOperation()

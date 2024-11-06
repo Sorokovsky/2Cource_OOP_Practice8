@@ -17,7 +17,7 @@ public class ContextConfigure
 
     public void Create()
     {
-        _instance = new CommandContext(_database, string.Empty, UserType.Create(Roles.Quest));
+        _instance = new CommandContext(_database, string.Empty);
     }
 
     public void WithTitle(string title)
