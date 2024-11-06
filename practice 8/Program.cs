@@ -69,7 +69,8 @@ public static class Program
             new ExitCommand(),
             new CreateStadiumTypeCommand(),
             new UpdateStadiumTypeCommand(),
-            new ShowStadiumTypesCommand()
+            new ShowStadiumTypesCommand(),
+            new FindStadiumTypeCommand()
             );
         return configure.Build();
     }
