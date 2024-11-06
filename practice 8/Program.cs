@@ -29,6 +29,8 @@ public static class Program
         UserEvents.SuccessLoginned += OnSuccessLoginned;
         UserEvents.SuccessLogout += OnSuccessLogout;
         EntitySuccessEvents.Updated += OnUpdated;
+        EntitySuccessEvents.Removed += OnRemoved;
+        EntityFailedEvents.NotDeleted += OnNotDeleted;
     }
 
     private static CommandContext PrepareMainCommands()
@@ -70,7 +72,8 @@ public static class Program
             new CreateStadiumTypeCommand(),
             new UpdateStadiumTypeCommand(),
             new ShowStadiumTypesCommand(),
-            new FindStadiumTypeCommand()
+            new FindStadiumTypeCommand(),
+            new RemoveStadiumTypeCommand()
             );
         return configure.Build();
     }
@@ -116,6 +119,16 @@ public static class Program
 
     private static void OnUpdated(BaseEntity entity)
     {
-        Console.WriteLine($"{entity.GetType().Name} was updated where id == {entity.Id}");
+        Console.WriteLine($"{entity.GetType().Name.Replace("Entity", "")} was updated where id == {entity.Id}");
+    }
+
+    private static void OnRemoved(BaseEntity entity)
+    {
+        Console.WriteLine($"{entity.GetType().Name.Replace("Entity", "")} was removed where id == {entity.Id}");
+    }
+
+    private static void OnNotDeleted(BaseEntity entity, string reason)
+    {
+        Console.WriteLine($"{entity.GetType().Name.Replace("Entity", "")} not deleted. {reason}");
     }
 }

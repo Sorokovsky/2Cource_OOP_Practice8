@@ -52,6 +52,26 @@ public class Repository<T> where T : BaseEntity
         }
     }
 
+    public void Remove(IsNeed isNeed)
+    {
+        var found = _list.Where(isNeed.Invoke).ToList();
+        var database = DbContext.Singleton();
+        foreach (var entity in found)
+        {
+            if (database.CanDelete(entity))
+            {
+                _list.Remove(entity);
+                EntitySuccessEvents.OnRemoved(entity);
+            }
+            else
+            {
+                EntityFailedEvents.OnNotDeleted(entity, "Because depends on others.");
+            }
+        }
+        Sort();
+        Save();
+    }
+
     private void Sort()
     {
         var temp = _list.ToList();

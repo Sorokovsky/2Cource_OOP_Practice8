@@ -15,6 +15,11 @@ public class DbContext
         }
         return _instance;
     }
+
+    public bool CanDelete(BaseEntity entity)
+    {
+        return false;
+    }
     
     public Repository<User> Users { get; } = new Repository<User>("users.dat");
     public Repository<CoachEntity> Coaches { get; } = new Repository<CoachEntity>("coaches.dat");
