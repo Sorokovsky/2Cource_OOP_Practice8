@@ -36,9 +36,34 @@ public class Indexing
             var fields = entityType.GetProperties();
             foreach (var field in fields)
             {
-                var name = field.Name;
-                
+                ProcessField(field);
             }
         }
+    }
+
+    private void ProcessField(PropertyInfo field)
+    {
+        var types = GetEntityTypes();
+        foreach (var type in types)
+        {
+            if (field.Name.EndsWith($"{type.Name.Replace("Entity", "")}Id"))
+            {
+                Console.WriteLine(field.Name);
+            }
+        }
+    }
+
+    private List<Type> GetEntityTypes()
+    {
+        var list = new List<Type>();
+        var repos = typeof(DbContext).GetProperties();
+        foreach (var repo in repos)
+        {
+            var generic = repo.GetModifiedPropertyType().GenericTypeArguments.First();
+            var entityType = Type.GetType(generic.FullName ?? string.Empty) ?? typeof(BaseEntity);
+            list.Add(entityType);
+        }
+
+        return list;
     }
 }
