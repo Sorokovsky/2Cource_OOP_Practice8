@@ -35,7 +35,7 @@ public class PositionEntity : BaseEntity
 
     public override string ToString()
     {
-        return $"{base.ToString()}" +
+        return $"{base.ToString()}\n" +
                $"Name of position: {Name}\n" +
                $"Requirements: {Requirements}\n" +
                $"Salary: {Salary}uah";

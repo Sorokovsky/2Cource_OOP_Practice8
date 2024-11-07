@@ -41,7 +41,7 @@ public class StadiumEntity : BaseEntity
 
     public override string ToString()
     {
-        return $"{base.ToString()}" +
+        return $"{base.ToString()}\n" +
                $"Code: {Code}\n" +
                $"Address: {Address}\n" +
                $"Phone number: {PhoneNumber}\n" +

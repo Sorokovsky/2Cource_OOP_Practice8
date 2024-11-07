@@ -83,7 +83,11 @@ public static class Program
         var configure = new ContextConfigure(DbContext.Singleton());
         configure.Create();
         configure.WithTitle("Stadiums menu.");
-        configure.WithCommands(new ExitCommand(), new CreateStadiumCommand());
+        configure.WithCommands(
+            new ExitCommand(), 
+            new CreateStadiumCommand(),
+            new ShowStadiumsCommand()
+            );
         return configure.Build();
     }
 
