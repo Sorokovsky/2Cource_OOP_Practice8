@@ -1,18 +1,15 @@
-using Practice_8.Database.Entities;
-
 namespace Practice_8.Database.IndexSystem;
 
-public class Index<T> where T : BaseEntity
+public class Index
 {
-    public delegate int GetIndex(T dependency);
-    
-    public Type DependOnType { get; set; }
+    public Type DependencyType { get; private set; }
+    public Type DependsOnType { get; private set; }
+    public string FieldNameInDependency { get; private set; }
 
-    public GetIndex GetFromDependency { get; set; }
-
-    public Index(Type dependOnType, GetIndex getFromDependency)
+    public Index(Type dependencyType, Type dependsOnType, string fieldNameInDependency)
     {
-        DependOnType = dependOnType;
-        GetFromDependency = getFromDependency;
+        DependencyType = dependencyType;
+        DependsOnType = dependsOnType;
+        FieldNameInDependency = fieldNameInDependency;
     }
 }

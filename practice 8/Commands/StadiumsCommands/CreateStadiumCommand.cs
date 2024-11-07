@@ -1,7 +1,6 @@
 using Practice_8.Database;
 using Practice_8.Database.Entities;
 using Practice_8.Database.Security;
-using Practice_8.Events;
 
 namespace Practice_8.Commands.StadiumsCommands;
 

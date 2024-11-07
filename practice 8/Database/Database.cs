@@ -1,4 +1,5 @@
 using Practice_8.Database.Entities;
+using Practice_8.Database.IndexSystem;
 using Practice_8.Database.Security;
 
 namespace Practice_8.Database;
@@ -6,6 +7,7 @@ namespace Practice_8.Database;
 public class DbContext
 {
     private static DbContext? _instance;
+    private readonly Indexing _indexing;
 
     public static DbContext Singleton()
     {
@@ -14,6 +16,11 @@ public class DbContext
             _instance = new DbContext();
         }
         return _instance;
+    }
+
+    public DbContext()
+    {
+        _indexing = new Indexing(this);
     }
 
     public bool CanDelete(BaseEntity entity)
