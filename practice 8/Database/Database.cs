@@ -18,14 +18,14 @@ public class DbContext
         return _instance;
     }
 
-    public DbContext()
+    private DbContext()
     {
         _indexing = new Indexing(this);
     }
 
     public bool CanDelete(BaseEntity entity)
     {
-        return false;
+        return _indexing.GetDependencies(entity).Count == 0;
     }
     
     public Repository<User> Users { get; } = new Repository<User>("users.dat");

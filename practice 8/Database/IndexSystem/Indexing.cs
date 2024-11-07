@@ -5,8 +5,6 @@ namespace Practice_8.Database.IndexSystem;
 
 public class Indexing
 {
-    private static Indexing? _instance = null;
-    
     private readonly List<Index> _list = new();
     private readonly DbContext _database;
 
@@ -16,14 +14,33 @@ public class Indexing
         CollectIndexes();
     }
 
-    public void Append(Index index)
+    private void Append(Index index)
     {
         _list.Add(index);
     }
 
-    public bool HasDependencies(Type type)
+    public List<BaseEntity> GetDependencies(BaseEntity entity)
     {
-        return true;
+        List<BaseEntity> dependencies = new();
+        Type type = entity.GetType();
+        var found = _list.Where(x => x.DependsOnType.Name.Equals(type.Name)).ToList();
+        foreach (var index in found)
+        {
+            var dependency = index.DependencyType;
+            var field = typeof(DbContext).GetProperties()
+                .First(x => x.Name.Equals(dependency.Name.Replace("Entity", "s")));
+            var idField = dependency.GetProperties()
+                .First(x => x.Name.Equals(index.FieldName));
+            dynamic result = field.GetValue(_database)!;
+            foreach (var item in result.List)
+            {
+                if (idField.GetValue(item) == entity.Id)
+                {
+                    dependencies.Add(item);
+                }
+            }
+        }
+        return dependencies;
     }
 
     private void CollectIndexes()
@@ -36,20 +53,18 @@ public class Indexing
             var fields = entityType.GetProperties();
             foreach (var field in fields)
             {
-                ProcessField(field);
+                ProcessField(field, entityType);
             }
         }
     }
 
-    private void ProcessField(PropertyInfo field)
+    private void ProcessField(PropertyInfo field, Type currentEntityType)
     {
         var types = GetEntityTypes();
-        foreach (var type in types)
+        foreach (var type in types.Where(type => IsKey(field, type)))
         {
-            if (field.Name.EndsWith($"{type.Name.Replace("Entity", "")}Id"))
-            {
-                Console.WriteLine(field.Name);
-            }
+            var index = new Index(type, currentEntityType, field.Name);
+            Append(index);
         }
     }
 
@@ -65,5 +80,10 @@ public class Indexing
         }
 
         return list;
+    }
+
+    private bool IsKey(PropertyInfo field, Type type)
+    {
+        return field.Name.EndsWith($"{type.Name.Replace("Entity", "")}Id");
     }
 }
