@@ -1,5 +1,6 @@
 using Practice_8.Database;
 using Practice_8.Database.Security;
+using Practice_8.Models;
 
 namespace Practice_8.Commands.StadiumsCommands;
 
@@ -14,7 +15,7 @@ public class ShowStadiumsCommand : Command
                 database.StadiumTypes.List, 
                 stadium => stadium.StadiumTypeId, 
                 type => type.Id, 
-                (entity, typeEntity) => $"{entity}\nStadium type:\n{typeEntity}"
+                (entity, typeEntity) => new StadiumModel(entity, new StadiumTypeModel(typeEntity))
                 );
         int i = 0;
         foreach (var stadium in stadiums)
