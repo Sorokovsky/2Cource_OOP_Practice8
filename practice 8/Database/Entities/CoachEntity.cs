@@ -21,6 +21,11 @@ public class CoachEntity : BaseEntity
         Age = age;
     }
 
+    public CoachEntity()
+    {
+        
+    }
+
     public static CoachEntity Enter()
     {
         Console.Write("Enter a phone number of coach: ");

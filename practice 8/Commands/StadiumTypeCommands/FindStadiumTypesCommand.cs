@@ -5,7 +5,7 @@ using Practice_8.Models;
 
 namespace practice_8.Commands.StadiumTypeCommands;
 
-public class FindStadiumTypeCommand : Command
+public class FindStadiumTypesCommand : Command
 {
     public override UserType NeedUserType { get; set; } = UserType.Create(Roles.User);
     public override string Title { get; set; } = "Find by name.";

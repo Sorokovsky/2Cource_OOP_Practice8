@@ -72,7 +72,7 @@ public static class Program
             new CreateStadiumTypeCommand(),
             new UpdateStadiumTypeCommand(),
             new ShowStadiumTypesCommand(),
-            new FindStadiumTypeCommand(),
+            new FindStadiumTypesCommand(),
             new RemoveStadiumTypeCommand()
             );
         return configure.Build();
@@ -86,7 +86,11 @@ public static class Program
         configure.WithCommands(
             new ExitCommand(), 
             new CreateStadiumCommand(),
-            new ShowStadiumsCommand()
+            new ShowStadiumsCommand(),
+            new FindStadiumsCommand(),
+            new UpdateStadiumCommand(),
+            new ChangeTypeCommand(),
+            new RemoveStadiumCommand()
             );
         return configure.Build();
     }

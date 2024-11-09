@@ -17,6 +17,11 @@ public class GameEntity : BaseEntity
         PlayedAtTime = playedAtTime;
     }
 
+    public GameEntity()
+    {
+        
+    }
+    
     public override string ToString()
     {
         return $"{base.ToString()}\n" +

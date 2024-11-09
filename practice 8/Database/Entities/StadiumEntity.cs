@@ -24,6 +24,11 @@ public class StadiumEntity : BaseEntity
         Notes = notes;
     }
 
+    public StadiumEntity()
+    {
+        
+    }
+
     public static StadiumEntity Enter()
     {
         Console.Write("Enter a code: ");

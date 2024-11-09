@@ -33,6 +33,11 @@ public class PositionEntity : BaseEntity
         return new PositionEntity(name, requirements, salary);
     }
 
+    public PositionEntity()
+    {
+        
+    }
+
     public override string ToString()
     {
         return $"{base.ToString()}\n" +

@@ -38,6 +38,11 @@ public class PlayerEntity : BaseEntity
         Number = number;
     }
 
+    public PlayerEntity()
+    {
+        
+    }
+
     public override string ToString()
     {
         return $"{base.ToString()}\n" +

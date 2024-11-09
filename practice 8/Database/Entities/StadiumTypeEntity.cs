@@ -10,6 +10,11 @@ public class StadiumTypeEntity : BaseEntity
         Name = name;
     }
 
+    public StadiumTypeEntity()
+    {
+        
+    }
+
     public static StadiumTypeEntity Enter()
     {
         Console.Write("Enter a name of stadium type: ");

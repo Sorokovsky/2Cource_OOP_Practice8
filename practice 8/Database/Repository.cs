@@ -30,12 +30,13 @@ public class Repository<T> where T : BaseEntity
         Load();
     }
 
-    public void Append(T newItem)
+    public T Append(T newItem)
     {
         newItem.Id = _primaryKey.NewId;
         _list.AddLast(newItem);
         Save();
         EntitySuccessEvents.OnCreated(newItem);
+        return newItem;
     }
 
     public void Update(IsNeed isNeed, T updatedItem)
