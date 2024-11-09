@@ -16,7 +16,7 @@ public abstract class Command
 
     public abstract void Process(DbContext database, CommandContext currentContext);
 
-    protected virtual T ChooseDependsOn<T>(string title, Repository<T> repository) where T : BaseEntity
+    protected virtual T ChooseDependsOn<T>(string title, Repository<T> repository, bool canCreate = true) where T : BaseEntity
     {
         Console.WriteLine($"Choose a {title} type.");
         var i = 0;
@@ -25,14 +25,16 @@ public abstract class Command
             Console.WriteLine($"Index: {i++}");
             Console.WriteLine(type);
         }
-        Console.Write("Enter a index or -1 to create new: "); var index = Convert.ToInt32(Console.ReadLine());
-        while (index < -1 || index >= repository.Count)
+
+        var canCreateText = canCreate ? " or -1 to create new" : string.Empty;
+        Console.Write($"Enter a index{canCreateText}: "); var index = Convert.ToInt32(Console.ReadLine());
+        while (index < (canCreate ? -1 : 0) || index >= repository.Count)
         {
             Console.WriteLine("Invalid index. Try again: ");
             index = Convert.ToInt32(Console.ReadLine());
         }
 
-        if (index == -1)
+        if (index == -1 && canCreate)
         {
             var type = Type.GetType(repository.GetType().GenericTypeArguments.First().FullName ?? typeof(BaseEntity).FullName) ?? typeof(BaseEntity);
             var instance = Activator.CreateInstance(type);

@@ -88,6 +88,7 @@ public static class Program
             new CreateStadiumCommand(),
             new ShowStadiumsCommand(),
             new FindStadiumsCommand(),
+            new FindByTypeCommand(),
             new UpdateStadiumCommand(),
             new ChangeTypeCommand(),
             new RemoveStadiumCommand()
