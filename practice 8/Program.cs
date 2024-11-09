@@ -1,4 +1,5 @@
 ﻿using Practice_8.Commands;
+using Practice_8.Commands.PositionsCommands;
 using Practice_8.Commands.StadiumsCommands;
 using practice_8.Commands.StadiumTypeCommands;
 using practice_8.Commands.UserCommands;
@@ -42,7 +43,8 @@ public static class Program
             new ExitCommand(), 
             PrepareUserContext(), 
             PrepareStadiumTypesContext(),
-            PrepareStadiumsCommands()
+            PrepareStadiumsCommands(),
+            PreparePositionsCommands()
             );
         return mainConfigure.Build();
     }
@@ -92,6 +94,20 @@ public static class Program
             new UpdateStadiumCommand(),
             new ChangeTypeCommand(),
             new RemoveStadiumCommand()
+            );
+        return configure.Build();
+    }
+
+    private static CommandContext PreparePositionsCommands()
+    {
+        var configure = new ContextConfigure(DbContext.Singleton());
+        configure.Create();
+        configure.WithTitle("Positions menu.");
+        configure.WithCommands(
+            new ExitCommand(),
+            new CreatePositionCommand(),
+            new ShowPositionsCommand(),
+            new FindByPositionNameCommand()
             );
         return configure.Build();
     }

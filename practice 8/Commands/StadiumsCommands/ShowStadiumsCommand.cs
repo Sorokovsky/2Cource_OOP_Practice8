@@ -10,18 +10,22 @@ public class ShowStadiumsCommand : Command
     public override string Title { get; set; } = "Show stadiums.";
     public override void Process(DbContext database, CommandContext currentContext)
     {
-        var stadiums = database.Stadiums.List
-            .Join(
-                database.StadiumTypes.List, 
-                stadium => stadium.StadiumTypeId, 
-                type => type.Id, 
-                (entity, typeEntity) => new StadiumModel(entity, new StadiumTypeModel(typeEntity))
-                );
-        int i = 0;
-        foreach (var stadium in stadiums)
+        if(database.Stadiums.List.Count == 0) Console.WriteLine("No stadiums found.");
+        else
         {
-            Console.WriteLine($"#{++i}");
-            Console.WriteLine(stadium);
+            var stadiums = database.Stadiums.List
+                .Join(
+                    database.StadiumTypes.List,
+                    stadium => stadium.StadiumTypeId,
+                    type => type.Id,
+                    (entity, typeEntity) => new StadiumModel(entity, new StadiumTypeModel(typeEntity))
+                );
+            int i = 0;
+            foreach (var stadium in stadiums)
+            {
+                Console.WriteLine($"#{++i}");
+                Console.WriteLine(stadium);
+            }
         }
     }
 }
