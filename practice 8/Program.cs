@@ -107,7 +107,9 @@ public static class Program
             new ExitCommand(),
             new CreatePositionCommand(),
             new ShowPositionsCommand(),
-            new FindByPositionNameCommand()
+            new FindByPositionNameCommand(),
+            new UpdatePositionCommand(),
+            new RemovePositionCommand()
             );
         return configure.Build();
     }
