@@ -23,16 +23,6 @@ public class CreateGameCommand : Command
         newGame.StadiumId = stadium.Id;
         newGame.FirstTeamId = firstTeam.Id;
         newGame.SecondTeamId = secondTeam.Id;
-        var game = database.Games.Append(newGame);
-        Simulate(game, database);
-    }
-
-    private void Simulate(GameEntity game, DbContext database)
-    {
-        var gameDateTime = new DateTime(game.PlayedAtDate, game.PlayedAtTime);
-        if (DateTime.Now >= gameDateTime)
-        {
-            
-        }
+        database.Games.Append(newGame);
     }
 }
