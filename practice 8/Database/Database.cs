@@ -8,6 +8,7 @@ public class DbContext
 {
     private static DbContext? _instance;
     private readonly Indexing _indexing;
+    private const string Folder = "database/";
 
     public static DbContext Singleton()
     {
@@ -21,6 +22,10 @@ public class DbContext
     private DbContext()
     {
         _indexing = new Indexing(this);
+        if (!Directory.Exists(Folder))
+        {
+            Directory.CreateDirectory(Folder);
+        }
     }
 
     public bool CanDelete(BaseEntity entity)
@@ -28,13 +33,13 @@ public class DbContext
         return _indexing.GetDependencies(entity).Count == 0;
     }
     
-    public Repository<User> Users { get; } = new Repository<User>("users.dat");
-    public Repository<CoachEntity> Coaches { get; } = new Repository<CoachEntity>("coaches.dat");
-    public Repository<GameEntity> Games { get; } = new Repository<GameEntity>("games.dat");
-    public Repository<GoalEntity> Goals { get; } = new Repository<GoalEntity>("goals.dat");
-    public Repository<PlayerEntity> Players { get; } = new Repository<PlayerEntity>("players.dat");
-    public Repository<PositionEntity> Positions { get; } = new Repository<PositionEntity>("positions.dat");
-    public Repository<StadiumEntity> Stadiums { get; } = new Repository<StadiumEntity>("stadiums.dat");
-    public Repository<StadiumTypeEntity> StadiumTypes { get; } = new Repository<StadiumTypeEntity>("stadium-types.dat");
-    public Repository<TeamEntity> Teams { get; } = new Repository<TeamEntity>("teams.dat");
+    public Repository<User> Users { get; } = new(Folder + "users.dat");
+    public Repository<CoachEntity> Coaches { get; } = new(Folder + "coaches.dat");
+    public Repository<GameEntity> Games { get; } = new(Folder + "games.dat");
+    public Repository<GoalEntity> Goals { get; } = new(Folder + "goals.dat");
+    public Repository<PlayerEntity> Players { get; } = new(Folder + "players.dat");
+    public Repository<PositionEntity> Positions { get; } = new(Folder + "positions.dat");
+    public Repository<StadiumEntity> Stadiums { get; } = new(Folder + "stadiums.dat");
+    public Repository<StadiumTypeEntity> StadiumTypes { get; } = new(Folder + "stadium-types.dat");
+    public Repository<TeamEntity> Teams { get; } = new(Folder + "teams.dat");
 }
