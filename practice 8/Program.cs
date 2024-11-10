@@ -146,7 +146,8 @@ public static class Program
             new ShowTeamsCommand(),
             new FindTeamCommand(),
             new UpdateTeamCommand(),
-            new ChangeCoachCommand()
+            new ChangeCoachCommand(),
+            new RemoveTeamCommand()
             );
         return configure.Build();
     }
