@@ -30,7 +30,6 @@ public class Indexing
             var fields = typeof(DbContext).GetProperties();
             var field = fields
                 .First(x => x.PropertyType.GenericTypeArguments.First().Name.Equals(dependency.Name));
-            Console.WriteLine(field.Name);
             var idField = dependency.GetProperties()
                 .First(x => x.Name.Equals(index.FieldName));
             dynamic result = field.GetValue(_database)!;

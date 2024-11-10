@@ -161,7 +161,12 @@ public static class Program
         configure.WithTitle("Players commands.");
         configure.WithCommands(
             new ExitCommand(),
-            new CreatePlayerCommand()
+            new CreatePlayerCommand(),
+            new ShowPlayersCommand(),
+            new FindPlayerCommand(),
+            new UpdatePlayerCommand(),
+            new ChangeTeamCommand(),
+            new RemovePlayerCommand()
             );
         return configure.Build();
     }
