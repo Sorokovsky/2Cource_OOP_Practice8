@@ -3,6 +3,7 @@ using Practice_8.Commands.CoachesCommands;
 using Practice_8.Commands.PositionsCommands;
 using Practice_8.Commands.StadiumsCommands;
 using practice_8.Commands.StadiumTypeCommands;
+using Practice_8.Commands.TeamsCommands;
 using practice_8.Commands.UserCommands;
 using Practice_8.Database;
 using Practice_8.Database.Entities;
@@ -46,7 +47,8 @@ public static class Program
             PrepareStadiumTypesContext(),
             PrepareStadiumsCommands(),
             PreparePositionsCommands(),
-            PrepareCoachesCommands()
+            PrepareCoachesCommands(),
+            PrepareTeamsCommands()
             );
         return mainConfigure.Build();
     }
@@ -129,6 +131,18 @@ public static class Program
             new UpdateCoachCommand(),
             new ChangePositionCommand(),
             new RemoveCoachCommand()
+            );
+        return configure.Build();
+    }
+
+    private static CommandContext PrepareTeamsCommands()
+    {
+        var configure = new ContextConfigure(DbContext.Singleton());
+        configure.Create();
+        configure.WithTitle("Teams menu.");
+        configure.WithCommands(
+            new ExitCommand(),
+            new CreateTeamCommand()
             );
         return configure.Build();
     }

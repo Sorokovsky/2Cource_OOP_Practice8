@@ -45,6 +45,14 @@ public class Indexing
         return dependencies;
     }
 
+    public List<Index> GetDependenceOnTypes(BaseEntity entity)
+    {
+        var typeDependency = entity.GetType();
+        return _list
+            .Where(x => x.DependencyType.Name.Equals(typeDependency.Name))
+            .ToList();
+    }
+
     private void CollectIndexes()
     {
         var repos = typeof(DbContext).GetProperties();

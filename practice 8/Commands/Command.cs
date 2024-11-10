@@ -1,6 +1,8 @@
+using System.Reflection;
 using Practice_8.Database;
 using Practice_8.Database.Entities;
 using Practice_8.Database.Security;
+using Index = Practice_8.Database.IndexSystem.Index;
 
 namespace Practice_8.Commands;
 
@@ -40,7 +42,23 @@ public abstract class Command
             var instance = Activator.CreateInstance(type);
             if (instance != null)
             {
-                dynamic newItem = instance.GetType().GetMethod("Enter").Invoke(instance, null);
+                var newItem = (T)instance.GetType().GetMethod("Enter").Invoke(instance, null);
+                List<Index> dependsOn = DbContext.Singleton().GetDependenceOnTypes(newItem);
+                if (dependsOn.Count != 0)
+                {
+                    foreach (var dependOn in dependsOn)
+                    {
+                        var name = dependOn.DependsOnType.Name.Replace("Entity", "").ToLower();
+                        var repos = typeof(DbContext).GetProperties();
+                        var repo = (dynamic)repos
+                            .First(x => x.PropertyType.GenericTypeArguments.First().Name.Equals(dependOn.DependsOnType.Name))
+                            .GetValue(DbContext.Singleton());
+                        var dependenceOn = (BaseEntity)ChooseDependsOn(name, repo);
+                        newItem.GetType().GetProperties()
+                            .First(x => x.Name.Equals(dependOn.FieldName))
+                            .SetValue(newItem, dependenceOn.Id);
+                    }
+                }
                 return repository.Append(newItem);
             }
         }

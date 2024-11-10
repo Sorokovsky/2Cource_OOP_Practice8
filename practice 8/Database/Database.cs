@@ -1,6 +1,7 @@
 using Practice_8.Database.Entities;
 using Practice_8.Database.IndexSystem;
 using Practice_8.Database.Security;
+using Index = Practice_8.Database.IndexSystem.Index;
 
 namespace Practice_8.Database;
 
@@ -28,6 +29,8 @@ public class DbContext
         }
     }
 
+    public List<Index> GetDependenceOnTypes(BaseEntity entity) => _indexing.GetDependenceOnTypes(entity);
+    
     public bool CanDelete(BaseEntity entity)
     {
         return _indexing.GetDependencies(entity).Count == 0;
