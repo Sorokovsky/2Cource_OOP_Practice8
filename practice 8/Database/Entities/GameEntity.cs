@@ -4,8 +4,7 @@ namespace Practice_8.Database.Entities;
 public class GameEntity : BaseEntity
 {
     public string Name { get; set; }
-    public DateOnly PlayedAtDate { get; set; }
-    public TimeOnly PlayedAtTime { get; set; }
+    public DateTime PlayedAt { get; set; }
     public int FirstTeamId { get; set; }
     public int SecondTeamId { get; set; }
     public int StadiumId { get; set; }
@@ -13,8 +12,7 @@ public class GameEntity : BaseEntity
     public GameEntity(string name, DateOnly playedAtDate, TimeOnly playedAtTime)
     {
         Name = name;
-        PlayedAtDate = playedAtDate;
-        PlayedAtTime = playedAtTime;
+        PlayedAt = new DateTime(playedAtDate, playedAtTime);
     }
 
     public GameEntity()
@@ -26,8 +24,8 @@ public class GameEntity : BaseEntity
     {
         return $"{base.ToString()}\n" +
                $"Name: {Name}\n" +
-               $"Played at date: {PlayedAtDate}\n" +
-               $"Played at time: {PlayedAtTime}";
+               $"Played at date: {DateOnly.FromDateTime(PlayedAt)}\n" +
+               $"Played at time: {TimeOnly.FromDateTime(PlayedAt)}";
     }
 
     public static GameEntity Enter()

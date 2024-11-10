@@ -14,8 +14,8 @@ public class GameModel
     public GameModel(GameEntity entity, TeamModel? firstTeam = null, TeamModel secondTeam = null, StadiumModel? stadium = null)
     {
         Name = entity.Name;
-        PlayedAtDate = entity.PlayedAtDate;
-        PlayedAtTime = entity.PlayedAtTime;
+        PlayedAtDate = DateOnly.FromDateTime(entity.PlayedAt);
+        PlayedAtTime = TimeOnly.FromDateTime(entity.PlayedAt);
         FirstTeam = firstTeam;
         SecondTeam = secondTeam;
         Stadium = stadium;
