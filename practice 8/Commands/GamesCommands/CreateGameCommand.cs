@@ -16,7 +16,7 @@ public class CreateGameCommand : Command
         var secondTeam = ChooseDependsOn("second team", database.Teams);
         while (firstTeam.Id == secondTeam.Id)
         {
-            Console.WriteLine("Team must be a different. Try again");
+            Console.WriteLine("Teams must be a different. Try again");
             firstTeam = ChooseDependsOn("first team", database.Teams);
             secondTeam = ChooseDependsOn("second team", database.Teams);
         }
