@@ -34,7 +34,7 @@ public class PlayerModel
                $"Surname: {Surname}\n" +
                $"Name: {Name}\n" +
                $"Second name: {SecondName}\n" +
-               $"Birthday: {Birthday}\n" +
+               $"Birthday: {DateOnly.FromDateTime(Birthday)}\n" +
                $"High: {High}m\n" +
                $"Weight: {Weight}kg\n" +
                $"Amplua: {Amplua}\n" +

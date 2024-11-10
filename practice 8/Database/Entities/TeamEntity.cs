@@ -12,6 +12,11 @@ public class TeamEntity : BaseEntity
         Name = name;
     }
 
+    public TeamEntity()
+    {
+        
+    }
+
     public static TeamEntity Enter()
     {
         Console.Write("Enter a name: ");
