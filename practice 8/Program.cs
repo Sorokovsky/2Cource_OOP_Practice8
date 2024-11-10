@@ -143,7 +143,10 @@ public static class Program
         configure.WithCommands(
             new ExitCommand(),
             new CreateTeamCommand(),
-            new ShowTeamsCommand()
+            new ShowTeamsCommand(),
+            new FindTeamCommand(),
+            new UpdateTeamCommand(),
+            new ChangeCoachCommand()
             );
         return configure.Build();
     }
