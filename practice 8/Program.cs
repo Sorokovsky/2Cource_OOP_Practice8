@@ -142,7 +142,8 @@ public static class Program
         configure.WithTitle("Teams menu.");
         configure.WithCommands(
             new ExitCommand(),
-            new CreateTeamCommand()
+            new CreateTeamCommand(),
+            new ShowTeamsCommand()
             );
         return configure.Build();
     }

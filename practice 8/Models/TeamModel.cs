@@ -19,9 +19,9 @@ public class TeamModel
     {
         var playersList = string.Empty;
         var players = Players != null ? $"\n Players: \n" + Players.Aggregate(playersList, (current, player) => current + "\n" + player) : string.Empty;
-        var coach = Coach != null ? $"\nCoach: \n {Coach}" : string.Empty;
+        var coach = Coach != null ? $"\n{Coach}" : string.Empty;
         var result = $"Team: \n" +
-                     $"Name: {Name}\n" +
+                     $"Name: {Name}" +
                      $"{coach}" +
                      $"{players}";
         return result;
