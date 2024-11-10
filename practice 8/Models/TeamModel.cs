@@ -18,7 +18,7 @@ public class TeamModel
     public override string ToString()
     {
         var playersList = string.Empty;
-        var players = Players != null ? $"\n Players: \n" + Players.Aggregate(playersList, (current, player) => current + "\n" + player) : string.Empty;
+        var players = (Players != null && Players.Count != 0) ? $"\nPlayers: \n" + Players.Aggregate(playersList, (current, player) => current + "\n" + player) : string.Empty;
         var coach = Coach != null ? $"\n{Coach}" : string.Empty;
         var result = $"Team: \n" +
                      $"Name: {Name}" +

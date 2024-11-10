@@ -19,7 +19,12 @@ public class ShowTeamsCommand : Command
                 (entity, coachEntity) => new TeamModel(
                     entity, 
                     new CoachModel(coachEntity, new PositionModel(database.Positions.List
-                    .First(x => x.Id == coachEntity.PositionId)))) 
+                    .First(x => x.Id == coachEntity.PositionId))),
+                    database.Players.List
+                        .Where(x => x.TeamId == entity.Id)
+                        .Select(x => new PlayerModel(x))
+                        .ToList()
+                    ) 
             ).ToList();
         if(found.Count == 0) Console.WriteLine("No teams found.");
         else
