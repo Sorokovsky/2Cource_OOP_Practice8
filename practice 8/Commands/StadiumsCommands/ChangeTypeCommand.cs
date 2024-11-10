@@ -11,13 +11,16 @@ public class ChangeTypeCommand : Command
     {
         Console.Write("Enter a code of stadium to find: ");
         var code = Convert.ToInt32(Console.ReadLine());
-        var found = database.Stadiums.List.FirstOrDefault(x => x.Code == code);
-        if(found == null) Console.WriteLine($"Stadium by code == {code} not found.");
+        var found = database.Stadiums.List.Where(x => code == x.Code).ToList();
+        if(found.Count == 0) Console.WriteLine($"Stadium by code == {code} not found.");
         else
         {
             var type = ChooseDependsOn("stadium type", database.StadiumTypes);
-            found.StadiumTypeId = type.Id;
-            database.Stadiums.Update(x => x.Code == code, found);
+            foreach (var stadium in found)
+            {
+                stadium.StadiumTypeId = type.Id;
+                database.Stadiums.Update(x => x.Id == stadium.Id, stadium);   
+            }
         }
     }
 }

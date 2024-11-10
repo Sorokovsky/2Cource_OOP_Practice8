@@ -28,14 +28,6 @@ public class ContextConfigure
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
     }
 
-    public void WithRole(UserType role)
-    {
-        ValidateInstance();
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-        _instance.NeedUserType = role;
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-    }
-
     private void ValidateInstance()
     {
         if (_instance == null)
