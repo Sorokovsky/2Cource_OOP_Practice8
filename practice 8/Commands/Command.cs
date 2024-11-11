@@ -76,7 +76,7 @@ public abstract class Command
             new StadiumModel(stadiumEntity, new StadiumTypeModel(stadiumType)));
     }
     
-    private TeamModel GetTeamModel(DbContext database, int teamId)
+    protected TeamModel GetTeamModel(DbContext database, int teamId)
     {
         var team = database.Teams.List.First(x => x.Id == teamId);
         var coachEntity = database.Coaches.List.First(x => x.Id == team.CoachId);
