@@ -185,7 +185,8 @@ public static class Program
             new FindGameCommand(),
             new UpdateGameCommand(),
             new ChangeStadiumCommand(),
-            new ChangeFirstTeamCommand()
+            new ChangeFirstTeamCommand(),
+            new ChangeSecondTeamCommand()
             );
         return configure.Build();
     }
