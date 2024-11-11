@@ -182,7 +182,10 @@ public static class Program
             new ExitCommand(),
             new CreateGameCommand(),
             new ShowGamesCommand(),
-            new FindGameCommand()
+            new FindGameCommand(),
+            new UpdateGameCommand(),
+            new ChangeStadiumCommand(),
+            new ChangeFirstTeamCommand()
             );
         return configure.Build();
     }
