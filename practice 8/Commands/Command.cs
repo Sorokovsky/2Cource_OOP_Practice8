@@ -2,6 +2,7 @@ using System.Reflection;
 using Practice_8.Database;
 using Practice_8.Database.Entities;
 using Practice_8.Database.Security;
+using Practice_8.Models;
 using Index = Practice_8.Database.IndexSystem.Index;
 
 namespace Practice_8.Commands;
@@ -63,5 +64,27 @@ public abstract class Command
             }
         }
         return repository[index];
+    }
+
+    protected GameModel GetGameModel(DbContext database, GameEntity game)
+    {
+        var stadiumEntity = database.Stadiums.List.First(x => x.Id == game.StadiumId);
+        var stadiumType = database.StadiumTypes.List.First(x => x.Id == stadiumEntity.StadiumTypeId);
+        var firstTeam = GetTeamModel(database, game.FirstTeamId);
+        var secondTeam = GetTeamModel(database, game.SecondTeamId);
+        return new GameModel(game, firstTeam, secondTeam,
+            new StadiumModel(stadiumEntity, new StadiumTypeModel(stadiumType)));
+    }
+    
+    private TeamModel GetTeamModel(DbContext database, int teamId)
+    {
+        var team = database.Teams.List.First(x => x.Id == teamId);
+        var coachEntity = database.Coaches.List.First(x => x.Id == team.CoachId);
+        var position = database.Positions.List.First(x => x.Id == coachEntity.PositionId);
+        var players = database.Players.List
+            .Where(x => x.TeamId == teamId)
+            .Select(x => new PlayerModel(x))
+            .ToList();
+        return new TeamModel(team, new CoachModel(coachEntity, new PositionModel(position)), players);
     }
 }

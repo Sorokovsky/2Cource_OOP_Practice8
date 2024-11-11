@@ -28,7 +28,7 @@ public class GameModel
         var stadium = Stadium != null ? $"\n{Stadium}" : string.Empty;
         return $"Game: \n" +
                $"Name: {Name}\n" +
-               $"Played at date: {PlayedAtDate.DayNumber}.{PlayedAtDate.Month}.{PlayedAtDate.Year}\n" +
+               $"Played at date: {PlayedAtDate.Day}.{PlayedAtDate.Month}.{PlayedAtDate.Year}\n" +
                $"Played at time: {PlayedAtTime.Hour}:{PlayedAtTime.Minute}:{PlayedAtTime.Second}" +
                $"{firstTeam}" +
                $"{secondTeam}" +

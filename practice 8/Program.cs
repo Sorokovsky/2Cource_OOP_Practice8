@@ -180,7 +180,9 @@ public static class Program
         configure.WithTitle("Games menu.");
         configure.WithCommands(
             new ExitCommand(),
-            new CreateGameCommand()
+            new CreateGameCommand(),
+            new ShowGamesCommand(),
+            new FindGameCommand()
             );
         return configure.Build();
     }
