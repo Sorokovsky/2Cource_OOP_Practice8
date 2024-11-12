@@ -104,6 +104,7 @@ public static class Program
             new UpdateStadiumCommand(),
             new ChangeTypeCommand(),
             new ShowStadiumByType(),
+            new ChangeStadiumPhoneNumberCommand(),
             new RemoveStadiumCommand()
             );
         return configure.Build();
@@ -195,6 +196,7 @@ public static class Program
             new ChangeSecondTeamCommand(),
             new ShowGamesInJulyCommand(),
             new ShowGamesIn2012AugustCommand(),
+            new ShowDateFirstGameCommand(),
             new RemoveGameCommand()
             );
         return configure.Build();
