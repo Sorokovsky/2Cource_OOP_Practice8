@@ -83,7 +83,7 @@ public class CommandContext : Command
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
         }
     }

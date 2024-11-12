@@ -13,7 +13,8 @@ public class ShowTournerCommand : Command
     {
         SimulateNotSimulated(database);
         var items = CollectTableItems(database);
-        Console.WriteLine("|   Team  |  Mark  |");
+        items.Sort((first, second) => second.Mark.CompareTo(first.Mark));
+        Console.WriteLine("|   Team  |  Score  |");
         foreach (var item in items)
         {
             Console.WriteLine($"|{item.Team.Name}|{item.Mark}|");
@@ -71,19 +72,59 @@ public class ShowTournerCommand : Command
     private List<TableItem> CollectTableItems(DbContext database)
     {
         var result = new List<TableItem>();
-        var teams = database.Teams.List.ToList();
-        foreach (var team in teams)
+        var games = database.Games.List.ToList();
+        foreach (var game in games)
         {
-            var players = database.Players.List.Where(x => x.TeamId == team.Id).ToList();
-            var teamGoals = 0;
-            foreach (var player in players)
+            var firstGoals = 0;
+            var secondGoals = 0;
+            var firstTeam = database.Teams.List.First(x => x.Id == game.FirstTeamId);
+            var firstPlayers = database.Players.List
+                .Where(x => x.TeamId == firstTeam.Id)
+                .ToList();
+            var secondTeam = database.Teams.List.First(x => x.Id == game.SecondTeamId);
+            var secondPlayers = database.Players.List
+                .Where(x => x.TeamId == secondTeam.Id)
+                .ToList();
+            foreach (var player in firstPlayers)
             {
-                var goal = database.Goals.List
-                    .FirstOrDefault(x => x.PlayerId == player.Id);
+                var goal = database.Goals.List.FirstOrDefault(x => x.PlayerId == player.Id && x.GameId == game.Id);
                 if(goal == null) continue;
-                teamGoals += goal.Count;
+                firstGoals += goal.Count;
             }
-            result.Add(new TableItem(team, teamGoals));
+            foreach (var player in secondPlayers)
+            {
+                var goal = database.Goals.List.FirstOrDefault(x => x.PlayerId == player.Id && x.GameId == game.Id);
+                if(goal == null) continue;
+                secondGoals += goal.Count;
+            }
+            var foundFirst = result.Where(x => x.Team.Id == firstTeam.Id).FirstOrDefault();
+            var foundSecond = result.Where(x => x.Team.Id == secondTeam.Id).FirstOrDefault();
+            var firstScore = 0;
+            var secondScore = 0;
+            if (firstGoals > secondGoals) firstScore = 3;
+            if (firstGoals == secondGoals)
+            {
+                firstScore = 1;
+                secondScore = 1;
+            }
+            if (firstGoals < secondGoals) secondScore = 3;
+            if (foundFirst == null)
+            {
+                result.Add(new TableItem(firstTeam, firstScore));
+            }
+            else
+            {
+                foundFirst.Mark += firstScore;
+            }
+
+            if (foundSecond == null)
+            {
+                result.Add(new TableItem(secondTeam, secondScore));
+            }
+            else
+            {
+                foundSecond.Mark += secondScore;
+            }
         }
         return result;
     }
