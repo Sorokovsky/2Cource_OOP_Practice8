@@ -103,6 +103,7 @@ public static class Program
             new FindByTypeCommand(),
             new UpdateStadiumCommand(),
             new ChangeTypeCommand(),
+            new ShowStadiumByType(),
             new RemoveStadiumCommand()
             );
         return configure.Build();
@@ -170,6 +171,9 @@ public static class Program
             new FindPlayerCommand(),
             new UpdatePlayerCommand(),
             new ChangeTeamCommand(),
+            new ShowPlayersDescendingBirthdayCommand(),
+            new ShowPlayersYounger20YearsCommand(),
+            new ShowAvarageAgeCommand(),
             new RemovePlayerCommand()
             );
         return configure.Build();
@@ -189,6 +193,8 @@ public static class Program
             new ChangeStadiumCommand(),
             new ChangeFirstTeamCommand(),
             new ChangeSecondTeamCommand(),
+            new ShowGamesInJulyCommand(),
+            new ShowGamesIn2012AugustCommand(),
             new RemoveGameCommand()
             );
         return configure.Build();

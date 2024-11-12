@@ -52,6 +52,14 @@ public class Indexing
             .ToList();
     }
 
+    public Repository<BaseEntity> GetRepository(BaseEntity entity)
+    {
+        var type = entity.GetType();
+        var property = typeof(DbContext).GetProperties()
+            .First(x => x.PropertyType.GenericTypeArguments.First().Name.Equals(type.Name));
+        return (Repository<BaseEntity>)property.GetValue(_database)!;
+    }
+
     private void CollectIndexes()
     {
         var repos = typeof(DbContext).GetProperties();

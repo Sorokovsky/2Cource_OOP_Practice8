@@ -73,6 +73,12 @@ public class Repository<T> where T : BaseEntity
         Save();
     }
 
+    public void Clear()
+    {
+        _list.Clear();
+        Save();
+    }
+
     private void Sort()
     {
         var temp = _list.ToList();
