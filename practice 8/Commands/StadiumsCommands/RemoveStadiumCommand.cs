@@ -9,7 +9,7 @@ public class RemoveStadiumCommand : Command
     public override string Title { get; set; } = "Remove by code.";
     public override void Process(DbContext database, CommandContext currentContext)
     {
-        Console.WriteLine("Enter a code of stadium for removing: ");
+        Console.Write("Enter a code of stadium for removing: ");
         var code = Convert.ToInt32(Console.ReadLine());
         database.Stadiums.Remove(x => x.Code == code);
     }

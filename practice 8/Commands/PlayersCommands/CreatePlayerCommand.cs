@@ -14,5 +14,6 @@ public class CreatePlayerCommand : Command
         var team = ChooseDependsOn("team", database.Teams);
         newPlayer.TeamId = team.Id;
         database.Players.Append(newPlayer);
+        if (newPlayer.Birthday.Year == 1986) database.From1986.Append(newPlayer);
     }
 }

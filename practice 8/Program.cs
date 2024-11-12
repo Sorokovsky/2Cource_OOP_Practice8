@@ -105,6 +105,7 @@ public static class Program
             new ChangeTypeCommand(),
             new ShowStadiumByType(),
             new ChangeStadiumPhoneNumberCommand(),
+            new ShowIfHasGamesCommand(),
             new RemoveStadiumCommand()
             );
         return configure.Build();
@@ -175,6 +176,8 @@ public static class Program
             new ShowPlayersDescendingBirthdayCommand(),
             new ShowPlayersYounger20YearsCommand(),
             new ShowAvarageAgeCommand(),
+            new ShowIfFrom1986Command(),
+            new ShowSurnameYoungerCommand(),
             new RemovePlayerCommand()
             );
         return configure.Build();
@@ -197,7 +200,9 @@ public static class Program
             new ShowGamesInJulyCommand(),
             new ShowGamesIn2012AugustCommand(),
             new ShowDateFirstGameCommand(),
-            new RemoveGameCommand()
+            new RemoveGameCommand(),
+            new RemoveGameFrom11September2011Command(),
+            new DeleteGameGoals()
             );
         return configure.Build();
     }

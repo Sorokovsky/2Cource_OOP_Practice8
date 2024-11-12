@@ -57,7 +57,7 @@ public class Indexing
         var type = entity.GetType();
         var property = typeof(DbContext).GetProperties()
             .First(x => x.PropertyType.GenericTypeArguments.First().Name.Equals(type.Name));
-        return (Repository<BaseEntity>)property.GetValue(_database)!;
+        return (dynamic)property.GetValue(_database)!;
     }
 
     private void CollectIndexes()

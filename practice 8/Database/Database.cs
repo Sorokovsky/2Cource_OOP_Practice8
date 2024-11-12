@@ -33,35 +33,17 @@ public class DbContext
     
     public bool CanDelete(BaseEntity entity)
     {
-        var hasDependencies = _indexing.GetDependencies(entity).Count == 0;
-        int wantDeleteOperation;
-        if (hasDependencies)
-        {
-            Console.WriteLine("This entity have a dependency. Do you want recursive delete (0-No, 1-Yes): ");
-            wantDeleteOperation = Convert.ToInt32(Console.ReadLine());
-            while (wantDeleteOperation != 0 && wantDeleteOperation != 1)
-            {
-                Console.WriteLine("Invalid operation. Try again: ");
-                wantDeleteOperation = Convert.ToInt32(Console.ReadLine());
-            }
-            RecursiveDelete(entity);
-            return wantDeleteOperation == 1;
-        }
-        return true;
+        return _indexing.GetDependencies(entity).Count == 0;
     }
-
-    private void RecursiveDelete(BaseEntity entity)
-    {
-        var dependencies = _indexing.GetDependencies(entity);
-        dependencies.ForEach(RecursiveDelete);
-        _indexing.GetRepository(entity).Remove(x => entity.Id == x.Id);
-    }
+    
     
     public Repository<User> Users { get; } = new(Folder + "users.dat");
     public Repository<CoachEntity> Coaches { get; } = new(Folder + "coaches.dat");
     public Repository<GameEntity> Games { get; } = new(Folder + "games.dat");
     public Repository<GoalEntity> Goals { get; } = new(Folder + "goals.dat");
     public Repository<PlayerEntity> Players { get; } = new(Folder + "players.dat");
+
+    public Repository<PlayerEntity> From1986 { get; set; } = new(Folder + "players-1986.dat");
     public Repository<PositionEntity> Positions { get; } = new(Folder + "positions.dat");
     public Repository<StadiumEntity> Stadiums { get; } = new(Folder + "stadiums.dat");
     public Repository<StadiumTypeEntity> StadiumTypes { get; } = new(Folder + "stadium-types.dat");
