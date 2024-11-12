@@ -201,7 +201,8 @@ public static class Program
         configure.WithTitle("Statistics menu.");
         configure.WithCommands(
             new ExitCommand(),
-            new ShowTournerCommand()
+            new ShowTournerCommand(),
+            new ShowPlayersRatingCommand()
             );
         return configure.Build();
     }
